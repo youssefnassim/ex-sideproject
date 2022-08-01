@@ -1,17 +1,15 @@
-import type { NextPage } from "next";
-import { GetStaticPaths, GetStaticProps, InferGetStaticPropsType } from "next";
+import type { GetStaticPropsContext, NextPage } from "next";
+import { GetStaticPaths, InferGetStaticPropsType } from "next";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote, MDXRemoteSerializeResult } from "next-mdx-remote";
+import { MDXRemote } from "next-mdx-remote";
 import { ParsedUrlQuery } from "querystring";
 
-const Post: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  frontMatter,
-  mdxSource,
-  slug,
-}) => {
+type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
+
+const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
   console.log("props", frontMatter);
   return <MDXRemote {...mdxSource} />;
 };
@@ -31,23 +29,12 @@ export const getStaticPaths: GetStaticPaths = async () => {
   };
 };
 
-type PostProps = {
-  frontMatter: {
-    [key: string]: any;
-  };
-  slug: string;
-  mdxSource: MDXRemoteSerializeResult<
-    Record<string, unknown>,
-    Record<string, string>
-  >;
-};
-
 type Params = ParsedUrlQuery & {
   slug: string;
 };
 
-export const getStaticProps: GetStaticProps<PostProps, Params> = async (
-  context
+export const getStaticProps = async (
+  context: GetStaticPropsContext<Params>
 ) => {
   const { slug } = context.params!;
 
