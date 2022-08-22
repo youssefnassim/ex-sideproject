@@ -20,7 +20,7 @@ module.exports = {
         ],
       },
       animation: {
-        rotation: "rotation 15s linear infinite",
+        rotation: "rotation 10s linear infinite",
       },
       keyframes: {
         rotation: {
