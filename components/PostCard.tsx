@@ -1,7 +1,11 @@
 import Link from "next/link";
 import { PostMeta } from "../lib/types";
 
-export default function PostCard({ title, slug }: PostMeta & { slug: string }) {
+export default function PostCard({
+  title,
+  slug,
+  ...rest
+}: PostMeta & { slug: string }) {
   return (
     <h2 className="uppercase hp-uppercase-text font-medium mb-5">
       <Link href={slug}>

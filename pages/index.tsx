@@ -62,8 +62,8 @@ export const getStaticProps = () => {
     })
     .sort(
       (a, b) =>
-        Number(new Date(b.frontMatter.date)) -
-        Number(new Date(a.frontMatter.date))
+        Number(new Date(b.frontMatter.publishedAt)) -
+        Number(new Date(a.frontMatter.publishedAt))
     );
 
   return {
