@@ -6,12 +6,37 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import { ParsedUrlQuery } from "querystring";
+import { PostMeta } from "lib/types";
+import { format } from "date-fns";
+import { components } from "components/MdxComponents";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
   console.log("props", frontMatter);
-  return <MDXRemote {...mdxSource} />;
+  const publishedAt = new Date(frontMatter.publishedAt);
+
+  return (
+    <article className="w-1/2 mx-auto">
+      <h1 className="uppercase text-2xl font-medium mt-16 mb-6 text-center">
+        {frontMatter.title}
+      </h1>
+      <p className="uppercase text-xl font-medium mb-5 text-center">
+        <time dateTime={format(publishedAt, "y-MM-dd")}>
+          {format(publishedAt, "d LLLL y")}
+        </time>
+      </p>
+      {frontMatter.tags && (
+        <p className="uppercase text-xl font-medium mb-8 text-center">
+          Tagged in:{" "}
+          {frontMatter.tags.map(
+            (tag, i) => `${tag}${i + 1 !== frontMatter.tags.length ? ", " : ""}`
+          )}
+        </p>
+      )}
+      <MDXRemote components={components} {...mdxSource} />
+    </article>
+  );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
@@ -48,7 +73,7 @@ export const getStaticProps = async (
 
   return {
     props: {
-      frontMatter,
+      frontMatter: frontMatter as PostMeta,
       slug,
       mdxSource,
     },
