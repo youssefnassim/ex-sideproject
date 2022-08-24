@@ -1,5 +1,6 @@
 import type { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
 import { GetStaticPaths, InferGetStaticPropsType } from "next";
+import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
