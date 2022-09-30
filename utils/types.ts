@@ -4,6 +4,8 @@ export type PostMeta = {
   publishedAt: string;
   updatedAt: string;
   status: "DRAFT" | "PUBLISHED";
-  tags: Array<string>;
+  tags?: Array<string>;
   author: string;
 };
+
+export type Post = { frontMatter: PostMeta; slug: string };

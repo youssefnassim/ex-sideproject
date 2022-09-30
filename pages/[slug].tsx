@@ -7,7 +7,7 @@ import matter from "gray-matter";
 import { serialize } from "next-mdx-remote/serialize";
 import { MDXRemote } from "next-mdx-remote";
 import { ParsedUrlQuery } from "querystring";
-import { PostMeta } from "lib/types";
+import { PostMeta } from "utils/types";
 import { format } from "date-fns";
 import { components } from "components/MdxComponents";
 
@@ -31,7 +31,8 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
         <p className="uppercase text-xl font-medium mb-8 text-center">
           Tagged in:{" "}
           {frontMatter.tags.map(
-            (tag, i) => `${tag}${i + 1 !== frontMatter.tags.length ? ", " : ""}`
+            (tag, i) =>
+              `${tag}${i + 1 !== frontMatter.tags?.length ? ", " : ""}`
           )}
         </p>
       )}

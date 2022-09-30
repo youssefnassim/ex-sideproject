@@ -1,5 +1,4 @@
 import Image from "next/image";
-import PostCard from "./PostCard";
 
 export const components = {
   p: (props: any) => <p className="mb-5 text-sm" {...props} />,

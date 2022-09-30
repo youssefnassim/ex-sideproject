@@ -1,5 +1,5 @@
 import Link from "next/link";
-import { PostMeta } from "../lib/types";
+import { PostMeta } from "../utils/types";
 
 export default function PostCard({
   title,
@@ -7,7 +7,7 @@ export default function PostCard({
   ...rest
 }: PostMeta & { slug: string }) {
   return (
-    <h2 className="uppercase hp-uppercase-text font-medium mb-5">
+    <h2 className="uppercase hp-uppercase-text font-medium mb-4">
       <Link href={slug}>
         <a className="after:content-['↩'] border-b-4 border-transparent hover:border-b-4 hover:border-black transition">
           {title}
