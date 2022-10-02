@@ -10,6 +10,7 @@ import { ParsedUrlQuery } from "querystring";
 import { PostMeta } from "utils/types";
 import { format } from "date-fns";
 import { components } from "components/MdxComponents";
+import rehypePrettyCode from "rehype-pretty-code";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -71,7 +72,11 @@ export const getStaticProps = async (
   );
 
   const { data: frontMatter, content } = matter(markdownWithMeta);
-  const mdxSource = await serialize(content);
+  const mdxSource = await serialize(content, {
+    mdxOptions: {
+      rehypePlugins: [rehypePrettyCode],
+    },
+  });
 
   return {
     props: {
