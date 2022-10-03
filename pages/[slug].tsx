@@ -12,6 +12,8 @@ import { format } from "date-fns";
 import { components } from "components/MdxComponents";
 import rehypePrettyCode from "rehype-pretty-code";
 import { options, rehypePrettyCodeStyles } from "utils/rehypePrettyCode";
+import arrowBack from "../public/arrow-back.svg";
+import Link from "next/link";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -19,26 +21,36 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
   const publishedAt = new Date(frontMatter.publishedAt);
 
   return (
-    <article className="w-1/2 mx-auto mb-6">
-      <h1 className="uppercase text-2xl font-medium mt-16 mb-6 text-center">
-        {frontMatter.title}
-      </h1>
-      <p className="uppercase text-xl font-medium mb-5 text-center">
-        <time dateTime={format(publishedAt, "y-MM-dd")}>
-          {format(publishedAt, "d LLLL y")}
-        </time>
-      </p>
-      {frontMatter.tags && (
-        <p className="uppercase text-xl font-medium mb-8 text-center">
-          Tagged in:{" "}
-          {frontMatter.tags.map(
-            (tag, i) =>
-              `${tag}${i + 1 !== frontMatter.tags?.length ? ", " : ""}`
-          )}
+    <main className="mt-2 mb-8">
+      <div className="w-[100px] top-2.5 left-2.5 fixed">
+        <Link href="/">
+          <a className="flex font-['marydale'] uppercase font-bold text-xl">
+            <Image src={arrowBack} alt="arrow-back" />
+            Index
+          </a>
+        </Link>
+      </div>
+      <article className="w-1/2 mx-auto">
+        <h1 className="uppercase text-2xl font-medium mt-16 mb-6 text-center">
+          {frontMatter.title}
+        </h1>
+        <p className="uppercase text-xl font-medium mb-5 text-center">
+          <time dateTime={format(publishedAt, "y-MM-dd")}>
+            {format(publishedAt, "d LLLL y")}
+          </time>
         </p>
-      )}
-      <MDXRemote components={components} {...mdxSource} />
-    </article>
+        {frontMatter.tags && (
+          <p className="uppercase text-xl font-medium mb-8 text-center">
+            Tagged in:{" "}
+            {frontMatter.tags.map(
+              (tag, i) =>
+                `${tag}${i + 1 !== frontMatter.tags?.length ? ", " : ""}`
+            )}
+          </p>
+        )}
+        <MDXRemote components={components} {...mdxSource} />
+      </article>
+    </main>
   );
 };
 
