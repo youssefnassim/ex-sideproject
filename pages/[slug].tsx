@@ -11,15 +11,15 @@ import { PostMeta } from "utils/types";
 import { format } from "date-fns";
 import { components } from "components/MdxComponents";
 import rehypePrettyCode from "rehype-pretty-code";
+import { options, rehypePrettyCodeStyles } from "utils/rehypePrettyCode";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
 const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
-  console.log("props", frontMatter);
   const publishedAt = new Date(frontMatter.publishedAt);
 
   return (
-    <article className="w-1/2 mx-auto">
+    <article className="w-1/2 mx-auto mb-6">
       <h1 className="uppercase text-2xl font-medium mt-16 mb-6 text-center">
         {frontMatter.title}
       </h1>
@@ -74,7 +74,7 @@ export const getStaticProps = async (
   const { data: frontMatter, content } = matter(markdownWithMeta);
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      rehypePlugins: [rehypePrettyCode],
+      rehypePlugins: [[rehypePrettyCode, options], [rehypePrettyCodeStyles]],
     },
   });
 
