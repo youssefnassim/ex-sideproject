@@ -27,14 +27,16 @@ export default function FilterablePostFeed({ posts }: { posts: Post[] }) {
   return (
     <>
       <div className="text-center uppercase hp-uppercase-text font-medium mb-7">
-        Remove stuff tagged in&nbsp;
+        <span className="font-['marydale'] font-bold hidden">(</span>Remove
+        stuff tagged in&nbsp;
         {tags.map((tag, i) => (
           <React.Fragment key={tag}>
             {i === tags.length - 1 && "or "}
             <Checkbox {...register(tag)} />
-            {i < tags.length - 1 ? ", " : ":"}
+            {i < tags.length - 1 && " "}
           </React.Fragment>
         ))}
+        <span className="font-['marydale'] font-bold hidden">)</span>
       </div>
       <div className="text-center">
         {filteredPosts.map((post, i) => (

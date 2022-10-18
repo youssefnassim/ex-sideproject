@@ -1,10 +1,15 @@
 import Image from "next/image";
 
 export const components = {
-  p: (props: any) => <p className="mb-5 text-sm" {...props} />,
+  p: (props: any) => (
+    <p
+      className="mb-5 text-2xl leading-7 font-bosld text-whiste texst-center"
+      {...props}
+    />
+  ),
   a: (props: any) => (
     <a
-      className="text-blue-500 after:content-['↩'] border-b-2 border-transparent hover:border-b-2 hover:border-blue-500 transition"
+      className="text-blue-500 text-blue-800 after:contesnt-['↩'] border-b-2 border-transparent hover:border-b-2 hover:border-blue-500 transition"
       {...props}
     />
   ),

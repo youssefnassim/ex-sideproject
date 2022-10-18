@@ -30,17 +30,17 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
           </a>
         </Link>
       </div>
-      <article className="w-1/2 mx-auto">
-        <h1 className="uppercase text-2xl font-medium mt-16 mb-6 text-center">
+      <article className="w-3/5 mx-auto">
+        <h1 className="uppercase text-4xl leading-none trsacking-[-3px] font-bold mt-16 mb-10 mls-[25%] pxs-40 text-center">
           {frontMatter.title}
         </h1>
-        <p className="uppercase text-xl font-medium mb-5 text-center">
+        <p className="uppercase text-xl font-bolddd mb-5 text-center text-swhite">
           <time dateTime={format(publishedAt, "y-MM-dd")}>
             {format(publishedAt, "d LLLL y")}
           </time>
         </p>
         {frontMatter.tags && (
-          <p className="uppercase text-xl font-medium mb-8 text-center">
+          <p className="uppercase text-xl font-bolddd mb-8 text-center texst-white">
             Tagged in:{" "}
             {frontMatter.tags.map(
               (tag, i) =>

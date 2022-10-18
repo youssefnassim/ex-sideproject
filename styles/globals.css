@@ -9,14 +9,20 @@
   }
 
   .hp-uppercase-text {
-    font-size: 29px;
-    line-height: 1.7;
+    font-size: 34px;
+    font-weight: 400 !important;
+    line-height: 1.2;
   }
+}
+
+body {
+  color: rgba(0, 0, 0, 0.85);
+  background: ;
 }
 
 a {
   color: inherit;
-  text-decoration: none;
+  text-decorastion: underline;
 }
 
 * {
