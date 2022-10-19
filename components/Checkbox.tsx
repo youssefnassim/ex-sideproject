@@ -21,7 +21,7 @@ function Checkbox({ onChange, name, checked }: CheckboxProps) {
         />
         <label
           htmlFor={name}
-          className={`font-['marydale'] font-black uppercase text-[30px] hover:cursor-pointer ${
+          className={`uppercase text-[30px] hover:cursor-pointer ${
             !checked ? "before:w-full" : "before:w-0"
           } transition-all before:content-[''] before:bg-red-600 before:absolute before:h-[3px] before:top-1/2
           before:transition-all`}

@@ -26,12 +26,14 @@ export default function useMultiCheckbox(props: UseMultiCheckboxProps = {}) {
 
   const handleChange = React.useCallback(
     (event: ChangeEvent<HTMLInputElement>) => {
-      setCheckboxes((prev) => ({
-        ...prev,
-        [event.target.name]: !prev[event.target.name],
-      }));
-
-      onChange && onChange(event);
+      if (onChange) {
+        onChange(event);
+      } else {
+        setCheckboxes((prev) => ({
+          ...prev,
+          [event.target.name]: !prev[event.target.name],
+        }));
+      }
     },
     [onChange]
   );
@@ -79,6 +81,10 @@ export default function useMultiCheckbox(props: UseMultiCheckboxProps = {}) {
     }
   }
 
+  function setValue(name: string, value: boolean) {
+    setCheckboxes((old) => ({ ...old, [name]: value }));
+  }
+
   function syncValuesTo(value: MultiCheckboxState) {
     if (state === value) {
       return;
@@ -96,6 +102,7 @@ export default function useMultiCheckbox(props: UseMultiCheckboxProps = {}) {
     register,
     selectAll: () => syncValuesTo(MultiCheckboxState.CHECKED),
     unselectAll: () => syncValuesTo(MultiCheckboxState.UNCHECKED),
+    setValue,
     getValue,
     state,
     count: Object.keys(checkboxes).filter((name) => checkboxes[name]).length,

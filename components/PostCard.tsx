@@ -9,7 +9,7 @@ export default function PostCard({
   return (
     <h2 className="uppercase hp-uppercase-text font-medium mb-4">
       <Link href={slug}>
-        <a className="after:content-['↩'] border-b-4 border-transparent hover:border-b-4 hover:border-black transition">
+        <a className="border-b-4 border-transparent hover:border-b-4 hover:border-black transition">
           {title}
         </a>
       </Link>
