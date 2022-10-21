@@ -1,15 +1,29 @@
 import React, { ChangeEvent } from "react";
+import FilterFrame from "../public/filter-frame.svg";
 
 type CheckboxProps = {
   name: string;
   checked: boolean;
+  disabled?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
 };
 
-function Checkbox({ onChange, name, checked }: CheckboxProps) {
+const filterFrameSize = (tagName: string) => {
+  if (tagName.length > 12) return "L";
+  return tagName.length > 5 ? "M" : "S";
+};
+
+const sizes = {
+  S: "w-32",
+  M: "w-40",
+  L: "w-52",
+};
+
+function Checkbox({ onChange, name, checked, disabled }: CheckboxProps) {
+  const sizeClass = sizes[filterFrameSize(name)];
+
   return (
     <>
-      {name === "Web development" && <br />}
       <div className="relative inline">
         <input
           type="checkbox"
@@ -17,14 +31,19 @@ function Checkbox({ onChange, name, checked }: CheckboxProps) {
           id={name}
           onChange={onChange}
           checked={checked}
+          disabled={disabled}
           className="appearance-none"
         />
+        {checked && (
+          <FilterFrame
+            className={`filterFramePath inline absolute ${sizeClass} top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 fill-transparent stroke-[2px] stroke-[#71FA4C] z-[-10]`}
+          />
+        )}
         <label
           htmlFor={name}
-          className={`uppercase text-[30px] hover:cursor-pointer ${
-            !checked ? "before:w-full" : "before:w-0"
-          } transition-all before:content-[''] before:bg-red-600 before:absolute before:h-[3px] before:top-1/2
-          before:transition-all`}
+          className={`uppercase select-none text-[30px] hover:cursor-pointer ${
+            disabled && "opacity-20"
+          } transition-all`}
         >
           {name}
         </label>

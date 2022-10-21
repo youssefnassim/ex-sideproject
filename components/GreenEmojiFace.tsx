@@ -1,6 +1,6 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import greenSmileyFace from "../public/green-smiley-face.svg";
+import GreenSmileyFace from "../public/green-smiley-face.png";
 import tearSmiley from "../public/tear-smiley.png";
 
 export default function GreenEmojiFace() {
@@ -24,10 +24,7 @@ export default function GreenEmojiFace() {
 
   return (
     <div className="w-[150px] h-[150px] fixed right-[28%] top-[10%] animate-rotation hover:cursor-pointer">
-      <Image
-        src={mouseLeftWindow ? tearSmiley : greenSmileyFace}
-        alt={mouseLeftWindow ? "Smiley with tear" : "The green emoji face"}
-      />
+      <Image src={GreenSmileyFace} alt="The green emoji face" />
     </div>
   );
 }

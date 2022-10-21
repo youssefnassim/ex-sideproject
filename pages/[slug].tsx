@@ -12,7 +12,7 @@ import { format } from "date-fns";
 import { components } from "components/MdxComponents";
 import rehypePrettyCode from "rehype-pretty-code";
 import { options, rehypePrettyCodeStyles } from "utils/rehypePrettyCode";
-import arrowBack from "../public/arrow-back.svg";
+import ArrowBack from "../public/arrow-back.svg";
 import Link from "next/link";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
@@ -25,7 +25,8 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
       <div className="w-[100px] top-2.5 left-2.5 fixed">
         <Link href="/">
           <a className="flex font-['marydale'] uppercase font-bold text-xl">
-            <Image src={arrowBack} alt="arrow-back" />
+            {/* TODO: fix this */}
+            <ArrowBack />
             Index
           </a>
         </Link>

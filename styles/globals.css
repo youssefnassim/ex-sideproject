@@ -22,3 +22,19 @@ a {
 * {
   box-sizing: border-box;
 }
+
+.filterFramePath {
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-dasharray: 1000;
+  stroke-dashoffset: 1000;
+  fill: transparent;
+  animation: dash 1s ease-in;
+  animation-fill-mode: forwards;
+}
+
+@keyframes dash {
+  to {
+    stroke-dashoffset: 0;
+  }
+}

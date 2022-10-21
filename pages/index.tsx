@@ -14,11 +14,8 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           Stuff—
         </div>
       </header>
-      <main className="w-3/5 mx-auto relative">
+      <main className="w-1/2 mx-auto relative">
         <GreenEmojiFace />
-        <p className="text-center uppercase hp-uppercase-text font-medium mb-7 hidden">
-          Find links to recent rants below:
-        </p>
         <FilterablePostFeed posts={posts} />
       </main>
     </div>

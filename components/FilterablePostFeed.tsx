@@ -24,18 +24,23 @@ export default function FilterablePostFeed({ posts }: { posts: Post[] }) {
 
   const filteredPosts =
     (state === MultiCheckboxState.UNCHECKED && posts) ||
-    posts.filter(
-      (post) =>
-        post.frontMatter.tags &&
-        selectedTags.every((tag) => post.frontMatter.tags?.includes(tag))
+    posts.filter((post) =>
+      selectedTags.every((tag) => post.frontMatter.tags?.includes(tag))
     );
+
+  const leftPossibleTags = Array.from(
+    new Set(filteredPosts.flatMap((post) => post.frontMatter.tags))
+  );
 
   return (
     <>
       <div className="text-center uppercase hp-uppercase-text font-medium mb-7">
         {tags.map((tag, i) => (
           <React.Fragment key={tag}>
-            <Checkbox {...register(tag, tag === "All" ? true : false)} />
+            <Checkbox
+              {...register(tag)}
+              disabled={!leftPossibleTags.includes(tag)}
+            />
             {i < tags.length - 1 ? " / " : ""}
           </React.Fragment>
         ))}
