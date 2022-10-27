@@ -24,7 +24,7 @@ function Checkbox({ onChange, name, checked, disabled }: CheckboxProps) {
 
   return (
     <>
-      <div className="relative inline">
+      <div className="relative inline-block">
         <input
           type="checkbox"
           name={name}
