@@ -63,11 +63,11 @@ This is **bold** and this is **strong**. This is _italic_ and this is _emphasize
 
 ```js showLineNumbers title="utils/postFetchers.ts" {2,9,4}
 export function getAllPosts() {
-  const files = fs.readdirSync(path.join("_posts"));
+  const files = fs.readdirSync(path.join("content/posts"));
 
   return files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
-      path.join("_posts", filename),
+      path.join("content/posts", filename),
       "utf-8"
     );
     const { data: frontMatter } = matter(markdownWithMeta);

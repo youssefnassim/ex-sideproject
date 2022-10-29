@@ -25,7 +25,6 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
       <div className="w-[100px] top-2.5 left-2.5 fixed">
         <Link href="/">
           <a className="flex font-['marydale'] uppercase font-bold text-xl">
-            {/* TODO: fix this */}
             <ArrowBack />
             Index
           </a>
@@ -49,14 +48,16 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
             )}
           </p>
         )}
-        <MDXRemote components={components} {...mdxSource} />
+        <div className="[&>p]:mb-5 text-sm">
+          <MDXRemote components={components} {...mdxSource} />
+        </div>
       </article>
     </main>
   );
 };
 
 export const getStaticPaths: GetStaticPaths = async () => {
-  const files = fs.readdirSync(path.join("_posts"));
+  const files = fs.readdirSync(path.join("content/posts"));
 
   const paths = files.map((filename) => ({
     params: {
@@ -80,7 +81,7 @@ export const getStaticProps = async (
   const { slug } = context.params!;
 
   const markdownWithMeta = fs.readFileSync(
-    path.join("_posts", slug + ".mdx"),
+    path.join("content/posts", slug + ".mdx"),
     "utf-8"
   );
 

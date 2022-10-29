@@ -13,11 +13,11 @@ export function getPostsByTags(tags: string[]) {
 }
 
 export function getAllPosts() {
-  const files = fs.readdirSync(path.join("_posts"));
+  const files = fs.readdirSync(path.join("content/posts"));
 
   return files.map((filename) => {
     const markdownWithMeta = fs.readFileSync(
-      path.join("_posts", filename),
+      path.join("content/posts", filename),
       "utf-8"
     );
     const { data: frontMatter } = matter(markdownWithMeta);

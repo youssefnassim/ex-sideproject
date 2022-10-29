@@ -23,7 +23,7 @@ export default function GreenEmojiFace() {
   });
 
   return (
-    <div className="w-[150px] h-[150px] fixed right-[28%] top-[10%] animate-rotation hover:cursor-pointer">
+    <div className="w-[150px] h-[150px] fixed right-[28%] top-[20%] animate-rotation hover:cursor-pointer">
       <Image src={GreenSmileyFace} alt="The green emoji face" />
     </div>
   );

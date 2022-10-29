@@ -1,7 +1,7 @@
 import Image from "next/image";
+import CopiableText from "components/CopiableText";
 
 export const components = {
-  p: (props: any) => <p className="mb-5 text-sm" {...props} />,
   a: (props: any) => (
     <a
       className="text-blue-500 after:content-['↩'] border-b-2 border-transparent hover:border-b-2 hover:border-blue-500 transition"
@@ -42,5 +42,8 @@ export const components = {
     <div className="relative">
       <Image alt={props.alt} className="rounded-[28px]" {...props} />
     </div>
+  ),
+  CopiableText: ({ children }: { children: string }) => (
+    <CopiableText>{children}</CopiableText>
   ),
 };
