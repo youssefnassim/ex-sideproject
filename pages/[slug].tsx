@@ -32,8 +32,8 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
           </a>
         </Link>
       </div>
-      <article className="px-4 xl:w-1/2 lg:w-3/5 md:w-2/3 mx-auto dark:font-medium">
-        <h1 className="uppercase text-2xl font-medium mt-16 mb-6 text-center">
+      <article className="py-24 px-4 xl:w-1/2 lg:w-3/5 md:w-2/3 mx-auto dark:font-medium">
+        <h1 className="uppercase text-2xl font-medium mb-6 text-center">
           {frontMatter.title}
         </h1>
         <p className="uppercase text-xl font-medium mb-5 text-center">
@@ -50,7 +50,7 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
             )}
           </p>
         )}
-        <div className="[&>p]:mb-5 text-sm">
+        <div className="[&>p]:mb-5 text-sm md:text-base">
           <MDXRemote components={components} {...mdxSource} />
         </div>
       </article>

@@ -1,9 +1,8 @@
 import Image from "next/image";
 import { useEffect, useState } from "react";
-import GreenSmileyFace from "../public/green-smiley-face.png";
-import tearSmiley from "../public/tear-smiley.png";
+import GreenSmileyFace from "../public/green-smiley-face.svg";
 
-export default function GreenEmojiFace() {
+export default function GreenEmojiFace({ className }: { className: string }) {
   const [mouseLeftWindow, setMouseLeftWindow] = useState(false);
 
   useEffect(() => {
@@ -23,8 +22,10 @@ export default function GreenEmojiFace() {
   });
 
   return (
-    <div className="w-[150px] h-[150px] fixed right-[10%] md:right-[20%] lg:right-[30%] top-[20%] animate-rotation hover:cursor-pointer">
-      <Image src={GreenSmileyFace} alt="The green emoji face" />
+    <div className={className}>
+      <GreenSmileyFace className="[&>path]:stroke-[#71FA4C] [&>path]:fill-[#71FA4C] animate-rotation" />
     </div>
   );
 }
+
+// #71FA4C
