@@ -7,9 +7,9 @@ export default function PostCard({
   ...rest
 }: PostMeta & { slug: string }) {
   return (
-    <h2 className="uppercase hp-uppercase-text font-medium mb-4">
+    <h2 className="uppercase text-xl md:text-2xl font-medium mb-4">
       <Link href={slug}>
-        <a className="border-b-4 border-transparent hover:border-b-4 hover:border-black transition">
+        <a className="border-b-4 border-transparent hover:border-b-4 hover:border-black dark:hover:border-neutral-600 transition">
           {title}
         </a>
       </Link>

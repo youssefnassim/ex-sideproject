@@ -14,9 +14,9 @@ const filterFrameSize = (tagName: string) => {
 };
 
 const sizes = {
-  S: "w-32",
-  M: "w-40",
-  L: "w-52",
+  S: "w-24",
+  M: "w-36",
+  L: "w-44",
 };
 
 function Checkbox({ onChange, name, checked, disabled }: CheckboxProps) {
@@ -41,8 +41,8 @@ function Checkbox({ onChange, name, checked, disabled }: CheckboxProps) {
         )}
         <label
           htmlFor={name}
-          className={`uppercase select-none text-[30px] hover:cursor-pointer ${
-            disabled && "opacity-20"
+          className={`uppercase select-none hover:cursor-pointer ${
+            disabled && "opacity-20 dark:opacity-30"
           } transition-all`}
         >
           {name}

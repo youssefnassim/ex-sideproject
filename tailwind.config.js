@@ -6,6 +6,7 @@ module.exports = {
     "./content/**/*.mdx",
     "./utils/**/*.{js,ts}",
   ],
+  darkMode: "class",
   theme: {
     extend: {
       fontFamily: {

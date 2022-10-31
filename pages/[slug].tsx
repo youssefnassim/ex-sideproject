@@ -14,6 +14,7 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { options, rehypePrettyCodeStyles } from "utils/rehypePrettyCode";
 import ArrowBack from "../public/arrow-back.svg";
 import Link from "next/link";
+import Themetoggler from "components/ThemeToggler";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -22,15 +23,16 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
 
   return (
     <main className="mt-2 mb-8">
+      <Themetoggler />
       <div className="w-[100px] top-2.5 left-2.5 fixed">
         <Link href="/">
-          <a className="flex font-['marydale'] uppercase font-bold text-xl">
-            <ArrowBack />
+          <a className="flex font-['marydale'] uppercase font-bold text-xl bg-white dark:bg-black">
+            <ArrowBack className="dark:[&>g>path]:stroke-neutral-600" />
             Index
           </a>
         </Link>
       </div>
-      <article className="w-1/2 mx-auto">
+      <article className="px-4 xl:w-1/2 lg:w-3/5 md:w-2/3 mx-auto dark:font-medium">
         <h1 className="uppercase text-2xl font-medium mt-16 mb-6 text-center">
           {frontMatter.title}
         </h1>

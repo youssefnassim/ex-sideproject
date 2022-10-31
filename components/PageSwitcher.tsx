@@ -5,7 +5,7 @@ export default function PageSwitcher() {
   const router = useRouter();
 
   return (
-    <div className="fixed bottom-5 right-5 bg-zinc-800 rounded-full px-0.5 pb-[2px] leading-5 z-50">
+    <div className="fixed bottom-5 right-5 bg-zinc-700 rounded-full px-0.5 pb-[2px] leading-5 z-50">
       <Link href="/">
         <a
           className={`px-2 py-1 text-[10px] text-white font-medium uppercase rounded-full ${
