@@ -18,27 +18,28 @@ import Themetoggler from "components/ThemeToggler";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
+const Post: NextPage<PostProps> = ({ frontMatter, mdxSource }) => {
   const publishedAt = new Date(frontMatter.publishedAt);
 
   return (
     <main className="mt-2 mb-8">
       <Themetoggler />
-      <div className="w-[100px] top-2.5 left-2.5 fixed">
+      <div className="w-[100px] top-2.5 left-2.5 fixed hidden">
         <Link href="/">
-          <a className="flex font-['marydale'] uppercase font-bold text-xl bg-white dark:bg-black">
-            <ArrowBack className="dark:[&>g>path]:stroke-neutral-600" />
+          <a className="flex font-['marydale'] uppercase font-bold text-xl">
+            <ArrowBack className="dark:[&>g>path]:stroke-neutral-500" />
             Index
           </a>
         </Link>
       </div>
-      <article className="py-24 px-4 xl:w-1/2 lg:w-3/5 md:w-2/3 mx-auto dark:font-medium">
+      <article className="py-16 px-4 xl:w-[830px] dark:xl:w-[850px] lg:w-3/5 md:w-2/3 mx-auto">
         <h1 className="uppercase text-2xl font-medium mb-6 text-center">
           {frontMatter.title}
         </h1>
         <p className="uppercase text-xl font-medium mb-5 text-center">
           <time dateTime={format(publishedAt, "y-MM-dd")}>
             {format(publishedAt, "d LLLL y")}
+            {`—${frontMatter.readingTime} min read`}
           </time>
         </p>
         {frontMatter.tags && (
@@ -50,10 +51,17 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource, slug }) => {
             )}
           </p>
         )}
-        <div className="[&>p]:mb-5 text-sm md:text-base">
+        <div className="[&>p]:mb-5 text-sm dark:font-medium">
           <MDXRemote components={components} {...mdxSource} />
         </div>
       </article>
+      <div className="flex fixed bottom-4 right-4 bg-neutral-500 rounded-full shadow-xl">
+        <Link href="/">
+          <a className=" text-white px-2 py-1 text-xs uppercase font-medium rounded-full">
+            Index
+          </a>
+        </Link>
+      </div>
     </main>
   );
 };

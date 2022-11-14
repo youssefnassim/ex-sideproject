@@ -7,7 +7,7 @@ export default function Document() {
         <link rel="stylesheet" href="https://use.typekit.net/gyx7jcz.css" />
         <link rel="stylesheet" href="https://use.typekit.net/kpj8dex.css" />
       </Head>
-      <body className="antialiased dark:bg-black dark:text-neutral-600">
+      <body className="antialiased dark:bg-black text-neutral-900 dark:text-neutral-500">
         <Main />
         <NextScript />
       </body>

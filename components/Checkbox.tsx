@@ -3,6 +3,7 @@ import FilterFrame from "../public/filter-frame.svg";
 
 type CheckboxProps = {
   name: string;
+  label?: string;
   checked: boolean;
   disabled?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
@@ -19,7 +20,7 @@ const sizes = {
   L: "w-44",
 };
 
-function Checkbox({ onChange, name, checked, disabled }: CheckboxProps) {
+function Checkbox({ onChange, name, label, checked, disabled }: CheckboxProps) {
   const sizeClass = sizes[filterFrameSize(name)];
 
   return (
@@ -45,7 +46,7 @@ function Checkbox({ onChange, name, checked, disabled }: CheckboxProps) {
             disabled && "opacity-20 dark:opacity-30"
           } transition-all`}
         >
-          {name}
+          {label || name}
         </label>
       </div>
     </>
