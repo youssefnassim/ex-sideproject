@@ -1,0 +1,44 @@
+---
+title: "Five Plus Years In The Making"
+excerpt: ""
+publishedAt: "2022-11-19T21:29:53.806Z"
+readingTime: 5
+status: "published"
+tags:
+  - "Uncategorized"
+author: "Youssef Nassim"
+---
+
+A logo, a filterable list of titles and a dark mode toggle are all you can see in the home page of this website. It didn’t start this way of course, I kept ripping stuff off till I ended up with the bare minimum without which there would be nothing.
+
+That is a principle I live by in all aspects of my life. Some call it minimalism. Taking away until there’s nothing to take away. Yeah I know, it’s life story time. But hear me out:
+
+If you look up the whois record for boringstuff.net, you’ll find it was registered back in 2017, and I’m sure I had the idea even way before. What held me back for so long on this project is the endless loop of design iterations and losing interest in between. I’m never satisfied with the result as soon as I get to it. Taking this “extreme minimalism” route is what has helped me break out of that loop.
+
+How it simply works is by following the fat-free content-first design approach. You make a list of all the elements of your content, try to dry it up until there’s nothing left to take away. And finally, lay it out on a blank canvas from a first principle standpoint, which means avoiding blind conformity to classic templates just for the sake of it. As much as you can.
+
+In my case, I needed to display a list of things. All without having a chunky navigation bar, hence the tiny exit button at the bottom right, scientifically the furthest point of your reading flow. And oh, because it’s a must now, I couldn't do without a control for dark mode, although I’ve considered dropping the toggle and just enforcing the system preference. I let myself get carried away, I know.
+
+## About The Technology Stack
+
+The intention behind Boring Stuff is to serve as my tech blog, the classic one every JavaScript developer has these days. You know, those blogs with one or two posts each other year. A couple of tutorials, some kind of benchmark article to show their grasp of the invoked subjects, and a portfolio of one-star github repos. Although I have no tutorials in mind nor any benchmarks, I don’t mind falling into that category but I hope to have a busier archive at least.
+
+Now that the target audience of this blog is clear, let me describe the technologies powering this masterpiece of a website. It’s open source by the way, head over to its –zero-star– repo.
+
+Throughout its conception years, it has gone through different technologies. WordPress was the first one, I was fluent with their theming system and used to the overall CMS experience from prior blogs. Then came the static generation hype, which I’ve already missed with early contenders like Jekyll and Hugo, and skipped directly to their JavaScript counterpart Gatsby.js. And because I’m a bit stubborn sometimes, I didn’t follow the hype all the way through with the markdown for content stuff, I went with headless Ghost instead. It was the modern and minimalist WordPress alternative in the JavaScript ecosystem. So I mixed the slick dashboard experience they provide with the flexibility and performance of a statically generated React front-end.
+
+Not so long until I changed my mind, and thought about simplifying my stack for deployment purposes if I remember well. So I went full-stack Ghost. After all, it’s SSR by nature and you have to put it behind some cache, so there is no real loss performance wise.
+
+But, who in their right mind is going to bear working with a templating system such as handlebars.js when you have enjoyed something infinitely flexible like JSX.
+
+Thus, I decided to switch back to React. But this time, I wanted to go all the way through even if it’s at the cost of bleeding on the edge. After browsing the blogs of some famous developers, an easy winner emerged. MDX for content, Tailwind for CSS and Next.js for everything.
+
+At the time of writing, it’s very much obvious that the stack I’ve picked is already not bleeding edge anymore. It’s probably Astro that is holding that title these couple of days, or should I say, couple of minutes. But I'm fine for the moment, no foreseeable change in the near future.
+
+Nonetheless, I already have to migrate to Next.js 13 which has just been released. We have some work to do to catch up with the new server component hype, don’t we? But this time not until I ship something.
+
+## Fun fact
+
+Ten years ago from this very day, I launched my first most successful blog (rollingsquare.net) which I ran for three years. But admittedly it’s not that much of a coincidence that I launched Boring Stuff today though. I have been slowly working on it since July of this year, and earlier this month I figured it’s almost ready to be shipped. So I thought it would be cool if I could launch today.
+
+Nevertheless, it didn’t work out as planned of course. I wanted to have at least three posts pre-launch and here I am with just the “welcome” post. And because I’ve rushed to meet the deadline, there is still some stuff that need to be done like SEO, analytics and naturally some refactoring as well.
