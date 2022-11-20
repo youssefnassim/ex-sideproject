@@ -24,7 +24,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
     <div className="py-20">
       <Themetoggler />
       <header className="mx-auto mb-10 flex flex-wrap justify-center">
-        <div className="w-full font-['marydale'] font-bold uppercase text-5xl text-neutral-500 dark:text-neutral-400 text-center leading-none tracking-tighter flex justify-center bg-clip-text bg-gradient-to-b dark:bg-gradient-to-t from-[#aaa] to-black dark:to-white text-fill-color-transparent">
+        <div className="w-full font-['marydale'] font-bold uppercase text-5xl text-neutral-500 dark:text-neutral-400 text-center leading-none tracking-tighter justify-center bg-clip-text bg-gradient-to-b dark:bg-gradient-to-t from-[#aaa] to-black dark:to-white text-fill-color-transparent">
           Boring <br />
           Stuff
         </div>
