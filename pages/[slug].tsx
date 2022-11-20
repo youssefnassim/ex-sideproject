@@ -1,6 +1,5 @@
-import type { GetStaticProps, GetStaticPropsContext, NextPage } from "next";
+import type { GetStaticPropsContext, NextPage } from "next";
 import { GetStaticPaths, InferGetStaticPropsType } from "next";
-import Image from "next/image";
 import fs from "fs";
 import path from "path";
 import matter from "gray-matter";
@@ -15,6 +14,7 @@ import { options, rehypePrettyCodeStyles } from "utils/rehypePrettyCode";
 import ArrowBack from "../public/arrow-back.svg";
 import Link from "next/link";
 import Themetoggler from "components/ThemeToggler";
+import ExitDrawing from "../public/exit-drawing.svg";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -55,10 +55,11 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource }) => {
           <MDXRemote components={components} {...mdxSource} />
         </div>
       </article>
-      <div className="flex fixed bottom-4 right-4 bg-neutral-500 rounded-full shadow-xl">
+      <div className="fixed bottom-2 right-2">
         <Link href="/">
-          <a className=" text-white px-2 py-1 text-xs uppercase font-medium rounded-full">
-            Index
+          <a className="flex gap-1 hover:gap-2 transition-all px-2 py-1 text-lg uppercase font-medium text-red-600">
+            <span>&larr;</span>
+            <span>Exit</span>
           </a>
         </Link>
       </div>

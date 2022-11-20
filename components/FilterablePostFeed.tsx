@@ -1,17 +1,10 @@
-import React, { useCallback } from "react";
+import React from "react";
 import { Post } from "utils/types";
 import Checkbox from "components/Checkbox";
 import PostCard from "components/PostCard";
 import useMultiCheckbox, { MultiCheckboxState } from "hooks/useMultiCheckbox";
 
-const tags = [
-  "React",
-  "TypeScript",
-  "Web development",
-  "tRPC",
-  "JavaScript",
-  "HTML",
-];
+const tags: string[] = [];
 
 export default function FilterablePostFeed({ posts }: { posts: Post[] }) {
   const { register, getValue, state } = useMultiCheckbox({
@@ -34,14 +27,15 @@ export default function FilterablePostFeed({ posts }: { posts: Post[] }) {
 
   return (
     <>
-      <div className="text-xl md:text-2xl text-center uppercase font-medium mb-7 -mr-2">
+      <div className="text-xl md:text-xl mx-auto text-center uppercase font-medium mb-2">
         {tags.map((tag, i) => (
           <React.Fragment key={tag}>
             <Checkbox
               {...register(tag)}
               disabled={!leftPossibleTags.includes(tag)}
             />
-            {i < tags.length - 1 ? " / " : ""}
+            {(i + 1) % 3 === 0 ? <br /> : ""}
+            {i < tags.length - 1 && (i + 1) % 3 !== 0 ? " / " : ""}
           </React.Fragment>
         ))}
       </div>

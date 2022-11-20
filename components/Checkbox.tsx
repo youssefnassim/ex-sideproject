@@ -42,7 +42,7 @@ function Checkbox({ onChange, name, label, checked, disabled }: CheckboxProps) {
         )}
         <label
           htmlFor={name}
-          className={`uppercase select-none hover:cursor-pointer ${
+          className={`uppercase select-none hover:cursor-pointer md:leading-10 ${
             disabled && "opacity-20 dark:opacity-30"
           } transition-all`}
         >

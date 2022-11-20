@@ -17,10 +17,11 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
       <Themetoggler />
       <main className="px-2 xl:w-1/2 md:w-3/5 mt-24 mx-auto relative uppercase text-center text-xl [&>p]:mb-5 text-lg font-medium">
         <MDXRemote components={components} {...mdxSource} />
-        <div className="flex fixed bottom-4 right-4 bg-neutral-500 rounded-full shadow-xl">
-          <Link href="/links">
-            <a className="text-white px-2 py-1 text-xs uppercase font-medium rounded-full">
-              Index
+        <div className="fixed bottom-2 right-2">
+          <Link href="/">
+            <a className="flex gap-1 hover:gap-2 transition-all px-2 py-1 text-lg uppercase font-medium text-red-600">
+              <span>&larr;</span>
+              <span>Exit</span>
             </a>
           </Link>
         </div>

@@ -16,7 +16,7 @@ export default function Themetoggler() {
     >
       {mounted &&
         (resolvedTheme === "dark" ? (
-          <Moon className="w-6 stroke-2" />
+          <Moon className="w-6 stroke-2 stroke-white" />
         ) : (
           <Sun className="w-6 stroke-2" />
         ))}

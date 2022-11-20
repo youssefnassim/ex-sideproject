@@ -19,16 +19,13 @@ export default function CopiableText({ children }: { children: string }) {
     } catch (error) {}
   };
 
-  const afterContent = hasJustBeenCopied
-    ? "after:content-['[copied]']"
-    : "after:content-['[copy]']";
-
   return (
     <span
-      className={`hover:cursor-pointer ${afterContent} after:ml-3`}
+      className="flex gap-2 flex-wrap justify-center cursor-pointer"
       onClick={handleCopyToClipboard}
     >
-      {children}
+      <span>{children}</span>
+      <span>{hasJustBeenCopied ? "[copied]" : "[copy]"}</span>
     </span>
   );
 }
