@@ -16,16 +16,26 @@ import rehypeSlug from "rehype-slug";
 import ArrowBack from "../public/arrow-back.svg";
 import Link from "next/link";
 import Themetoggler from "components/ThemeToggler";
-import ExitDrawing from "../public/exit-drawing.svg";
 import { HEADING_ANCHOR } from "utils/constants";
+import Head from "next/head";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
-const Post: NextPage<PostProps> = ({ frontMatter, mdxSource }) => {
+const Post: NextPage<PostProps> = ({ frontMatter, slug, mdxSource }) => {
   const publishedAt = new Date(frontMatter.publishedAt);
 
   return (
     <main className="mt-2 mb-8">
+      {slug === "fashion-timeline-of-web-design" && (
+        <Head>
+          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
+          <link
+            href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Open+Sans:wght@400&family=Inter:wght@700&family=Space+Grotesk:wght@400&display=swap"
+            rel="stylesheet"
+            key="fonts"
+          />
+        </Head>
+      )}
       <Themetoggler />
       <div className="w-[100px] top-2.5 left-2.5 fixed hidden">
         <Link legacyBehavior href="/">
