@@ -11,10 +11,13 @@ import { format } from "date-fns";
 import { components } from "components/MdxComponents";
 import rehypePrettyCode from "rehype-pretty-code";
 import { options, rehypePrettyCodeStyles } from "utils/rehypePrettyCode";
+import rehypeAutolinkHeadings from "rehype-autolink-headings";
+import rehypeSlug from "rehype-slug";
 import ArrowBack from "../public/arrow-back.svg";
 import Link from "next/link";
 import Themetoggler from "components/ThemeToggler";
 import ExitDrawing from "../public/exit-drawing.svg";
+import { HEADING_ANCHOR } from "utils/constants";
 
 type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
 
@@ -25,7 +28,7 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource }) => {
     <main className="mt-2 mb-8">
       <Themetoggler />
       <div className="w-[100px] top-2.5 left-2.5 fixed hidden">
-        <Link href="/">
+        <Link legacyBehavior href="/">
           <a className="flex font-['marydale'] uppercase font-bold text-xl">
             <ArrowBack className="dark:[&>g>path]:stroke-neutral-500" />
             Index
@@ -56,7 +59,7 @@ const Post: NextPage<PostProps> = ({ frontMatter, mdxSource }) => {
         </div>
       </article>
       <div className="fixed bottom-2 right-2">
-        <Link href="/">
+        <Link legacyBehavior href="/">
           <a className="flex gap-1 hover:gap-2 transition-all px-2 py-1 text-lg uppercase font-medium text-red-600">
             <span>&larr;</span>
             <span>Exit</span>
@@ -99,7 +102,20 @@ export const getStaticProps = async (
   const { data: frontMatter, content } = matter(markdownWithMeta);
   const mdxSource = await serialize(content, {
     mdxOptions: {
-      rehypePlugins: [[rehypePrettyCode, options], [rehypePrettyCodeStyles]],
+      rehypePlugins: [
+        [rehypePrettyCode, options],
+        rehypePrettyCodeStyles,
+        rehypeSlug,
+        [
+          rehypeAutolinkHeadings,
+          {
+            behavior: "wrap",
+            properties: {
+              className: [HEADING_ANCHOR],
+            },
+          },
+        ],
+      ],
     },
   });
 

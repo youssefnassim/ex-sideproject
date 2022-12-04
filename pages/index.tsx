@@ -43,7 +43,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <CuteTile
             pictogram={<TwitterDrawing className={PICTOGRAM} />}
             label={
-              <Link href="https://twitter.com/youssef_nassim">
+              <Link legacyBehavior href="https://twitter.com/youssef_nassim">
                 <a className={LINK}>Twitter</a>
               </Link>
             }
@@ -51,7 +51,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <CuteTile
             pictogram={<InboxDrawing className={PICTOGRAM} />}
             label={
-              <Link href="/newsletter">
+              <Link legacyBehavior href="/newsletter">
                 <a className={LINK}>Newsletter</a>
               </Link>
             }
@@ -59,7 +59,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
           <CuteTile
             pictogram={<GithubDrawing className={PICTOGRAM} />}
             label={
-              <Link href="https://github.com/youssefnassim">
+              <Link legacyBehavior href="https://github.com/youssefnassim">
                 <a className={LINK}>Github</a>
               </Link>
             }
