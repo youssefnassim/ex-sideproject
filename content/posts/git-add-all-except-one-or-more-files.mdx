@@ -1,0 +1,97 @@
+---
+title: "Git Add All Except One or More Files"
+excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus."
+publishedAt: "2022-12-11T20:57:01.282Z"
+readingTime: 3
+status: PUBLISHED
+tags:
+  - "Git"
+author: "Youssef Nassim"
+---
+
+At my current day job, every now and then I need to toggle some feature flags which we have in tracked env files. So I always wish I had a single git command to add all the files except that one, when I still need it locally but want to commit. Something like `git stop <file>` that will stage everything excluding the given files.
+
+I’m sure there are other use cases besides the very niche one I’ve just given. I personally encounter this need occasionally so I’ve done a quick search, and business as usual with git, there’s plenty of ways to do it. But nothing close to a single and simple command.
+
+You either have to undo something later like when you need to reset the file after adding all:
+
+```shell
+git add .
+git reset -- path/to/file.js
+```
+
+Or use the `:!` pathspec (short for `:(exclude)`) to exclude the files:
+
+```shell
+git add --all -- ':!path/to/file1.js' ':!path/to/file2.js' ':!path/to/folder/*'
+```
+
+but will have to spell it letter by letter because the CLI autocomplete gets confused by the additional characters before the file paths. Certainly cumbersome for someone who refuses to use the mouse to manage commits in some GUI.
+
+So I’ve written a tiny shell script which I’ve added as a custom git command. The `git stop` command I wish I had.
+
+## The Script
+
+Using the help of our new friend ChatGPT, since I don’t usually write shell scripts, I asked it to write it for me to avoid spending an hour battling with the syntax to make it work. Of course it delivered, and even with a detailed explanation of how to run it.
+
+```shell showLineNumbers showLineNumbers title="Users/youssef/bin/git-stop"
+#!/bin/sh
+
+# Check if any arguments were provided
+if [ $# -eq 0 ]; then
+  echo "Error: No arguments provided"
+  exit 1
+fi
+
+# Stage all files in the current directory except for the specified files
+git add .
+for file in "$@"
+do
+  # Unstage the file
+  git reset HEAD "$file"
+Done
+```
+
+You need to name the file something like `git-my-custom-cmd` (no extension) which you’ll run as `git my-custom-cmd`. In my case I named it `git-stop`. Then you’ll have to make it executable with this simple command:
+
+```shell
+chmod +x git-my-custom-cmd
+```
+
+## Custom Git Command
+
+In fact, Git already has what it needs to recognise the command due to the name we gave our script. This guy has done a magnificent job explaining how that works in an in-depth article about the inner-workings of custom git commands.
+
+All we have to do is just to make it globally accessible within your shell, which in simple terms means it’s within a directory that exists in your `$PATH`. So you either (1) create it in one of the directories already in there, or (2) add the directory where you’ve created it to the `$PATH`.
+
+If you’re familiar with shells you already know what to do, otherwise here are the two options above explained:
+
+### Method 1
+
+Technically, you can just put it in any of the directories already in your path which you can see running `echo &PATH` (they’re separated by colons), but you preferably should stick with `/usr/local/bin`.
+
+### Method 2
+
+This one requires editing your shell config file which is usually within your `$HOME` folder (or its short form `~`), adding the following line to it:
+
+```shell
+export PATH="path-to-your-directory:$PATH"
+```
+
+Some of the most common shells are Bash that use the `.bashrc` file for configuration, Zsh config file is typically called `.zshrc`, Fish shells usually use `config.fish`, etc…
+
+To check which shell you’re using, run `echo $SHELL`. If it’s bash for example, your config file is typically located in `~/.bashrc` which is short for `/Users/<user>/.bashrc`.
+
+For instance, some people like to dedicate a directory in their home folder for git utility scripts or this sort of stuff. Something like `~/git-scripts` to which the line you’ll have to add looks like:
+
+```shell
+export PATH="$HOME/git-scripts:$PATH"
+# or
+export PATH="~/git-scripts:$PATH"
+```
+
+Now go run it. You can give it multiple files as well.
+
+```shell
+git stop .env.staging some/other/polluted/file.js
+```
