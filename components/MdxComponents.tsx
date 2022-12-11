@@ -6,6 +6,8 @@ export const components = {
   a: (props: any) => (
     <a
       className="text-blue-500 before:content-['→'] border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 transition"
+      target="_blank"
+      rel="noopener"
       {...props}
     />
   ),

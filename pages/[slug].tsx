@@ -122,6 +122,7 @@ export const getStaticProps = async (
             behavior: "wrap",
             properties: {
               className: [HEADING_ANCHOR],
+              target: "_self",
             },
           },
         ],
