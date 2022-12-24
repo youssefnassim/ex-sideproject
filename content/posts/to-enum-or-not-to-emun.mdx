@@ -1,0 +1,204 @@
+---
+title: "To Enum or not to Enum"
+excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus."
+publishedAt: "2022-12-24T20:42:12.315Z"
+readingTime: 7
+status: PUBLISHED
+tags:
+  - "TypeScript"
+author: "Youssef Nassim"
+---
+
+Two of my coworkers had been having existential debates on their pull requests on the subject of TypeScript enums. One uses them by default whenever he deals with a set of things and the other sees no reason for their use over union types in most cases.
+
+To settle the dispute, I’ve done some rabbit hole digging regarding this subject. And because I have cringy English and also like to treat my patient readers well, I’ll begin with the satisfying conclusion I’ve reached, which I believe any TypeScript developer should go by.
+
+Taking into consideration their abnormalities, there’s no real benefit of using enums over the alternatives other than ease of refactoring. And you should be nuts to make such a tradeoff just for that.
+
+So there you go if you want to trust a complete stranger on the web, the answer is not to enum.
+
+Just use union types if you don’t care about the values of your type (1), or pick one of the solutions below, which I highly doubt you’d need if you landed here looking up the difference between enums and union types. Otherwise let’s begin the arguments part of the article.
+
+## Compiled to Gibberish, Increasing Code Size
+
+While TypeScript types don’t get to the runtime, enums compile to IIFE that makes some objects which will definitely increase your bundle size especially if you use them quite often. Take a look at this example on the [playground](https://www.typescriptlang.org/play?#code/C4TwDgpgBAMg8gcQPowKIDVUygXigcgEkA5AMTnygB8DUAlOuOym-AdQEE7iSF8BYAFBQhEAHYBXALaxEKDFiSpiAVQCyUAN5CoukuQA0O3fUZ0jw3Z268hAXyFA) to see the difference between the compiled code of union types and enums:
+
+```ts
+type LOG_LEVEL = "INFO" | "ERROR" | "WARNING";
+
+enum LOG_LEVEL_ENUM {
+  INFO,
+  ERROR,
+  WARNING,
+}
+```
+
+Exactly, types don’t add a single byte to the JavaScript delivered to your browser.
+
+## Against Some Philosophical Aspects of TypeScript
+
+Two of them, to be precise: TypeScript being just a superset of JavaScript, and the duck typing principle. The former is broken because enums compile to the mind bending code we’ve seen above, and the latter is about what’s called otherwise “structural typing” which in less scary terms means that TypeScript type system normally only cares about the shape of objects and not the actual type.
+
+The following example illustrates that. It is in fact one way to represent a set of constants in an enum-ish way, yet a bit advanced because we want to build our type from the object `LOG_LEVEL` values. We’ll go into further details about that later.
+
+```ts showLineNumbers {16,19,23}
+const LOG_LEVEL = {
+  INFO: "Info",
+  ERROR: "Error",
+  WARNING: "Warning",
+} as const;
+
+type ObjectValues<T> = T[keyof T];
+
+type LOG_LEVEL = ObjectValues<typeof LOG_LEVEL>;
+
+function log(message: string, level: LOG_LEVEL) {
+  console.log(level, message);
+}
+
+// the enum-ish way using the object
+log("Big bang!", LOG_LEVEL.WARNING);
+
+// call with literal string
+log("Big bang!", "Warning");
+
+// or with any random variable
+const logLevel = "Error";
+log("Dont panic!", logLevel);
+```
+
+Business as usual, the `level` argument with `LOG_LEVEL` type accepts any variable or string literal within the type.
+
+While with enums, TypeScript actually cares about the name:
+
+```ts showLineNumbers {15}
+enum LOG_LEVEL {
+  INFO = "Info",
+  ERROR = "Error",
+  WARNING = "Warning",
+}
+
+function enumLog(message: string, level: LOG_LEVEL) {
+  console.log(level, message);
+}
+
+// with enum
+enumLog("Big bang!", LOG_LEVEL.ERROR);
+
+// string literal doesn't compile
+enumLog("Big bang!", "ERROR");
+```
+
+As you can see, you could’ve expected it to simply work with the string literal, but it does not, you will get the following compiler error:
+
+```txt
+Argument of type '"ERROR"' is not assignable to parameter of type 'LOG_LEVEL'.
+```
+
+Because I’m used to the duck typing principle of TypeScript, It unconsciously happens to me to this day when dealing with enums that I expect to get the autocomplete of my string where it needs an enum value, thinking I’ll get the possible values like in union types.
+
+## Iterating Is Doable Without Them
+
+Sometimes you might need to be able to iterate over the values of your set or just have some kind of key/value mapping that you can access for some reason. A use case that is not uncommon to see is when the values don’t correspond to their name -in the code- and thus need a mapping.
+
+We can imagine the values in the following example come from some french service, we use this enum for instance to set the correct shipping methods in a certain `Order` model (bare with the crappy examples):
+
+```ts
+enum SHIPPING_METHOD {
+  domicile = "HOME",
+  pointRelais = "PICKUP",
+  retraitEnMagasin = "CLICK_COLLECT",
+  drive = "DRIVE",
+}
+// expecting variable of type: SHIPPING_METHOD
+const shippingMethod: SHIPPING_METHOD = SHIPPING_METHOD["domicile"];
+```
+
+Good use case for enums. If it weren’t for the type safety that comes with them, we normally would’ve done that with a simple plain old JavaScript object. Well brace yourselves because we can simulate that using `const assertions` and some type trickery:
+
+```ts
+const SHIPPING_METHOD = {
+  domicile: "HOME",
+  pointRelais: "PICKUP",
+  retraitEnMagasin: "CLICK_COLLECT",
+  drive: "DRIVE",
+} as const;
+
+type ObjectValues<T> = T[keyof T];
+
+type SHIPPING_METHOD = ObjectValues<typeof SHIPPING_METHOD>;
+
+const shippingMethod: SHIPPING_METHOD = SHIPPING_METHOD.domicile;
+```
+
+The const assertion ensures the type will not be expanded to `string` and the values can never be modified because they are read-only this way.
+
+[Try it on the playground](https://www.typescriptlang.org/play?#code/MYewdgzgLgBAygCQJIAUVIHIHED6BZAUQBUEB5AERgF4YBvAWACgYYATEAWwEtguAbAKYAuGACIyhUQBomLAA4guYKACUBfAIZcII0egDCAaQCqKabJgAnAVEtaoBMHg0BzDRCW79AGSRGc+qTe3gT6RObMbJZcAG7CYuQqSABqBBEAvjDuMKCQUADcTExQAJ5yAjCkAEYAVgLAUMkafACuAhAAPEQAfNQwRADaANYCJSAAZv0AuoWMxWUViKjo2PjEZJQ01XUNTa3tHaXlE-DIaJi4hCQU3bPz5ZWWrAKWfQyR8pYgrC0NOjDQaJgFwDKYWFgQAAWXDkciULjwNkh3wA-CIludVlcNkx0kVGOMWmAGlxwDAXDY4NDYfDEVBkawABQASjo4Jy4GgAOpcOBdIZ-wAgpY7CUOiMxpMjgIThiVpd1jc+gMAOTsbi8QQqqQwFUKJSqdRaCDa3XWWz2RzONweMCmtXROIqmb4lgsc0tSxgbkw3kIpHfCADZz0gB04z4IBAlkZIchobsYHVLJgACoYAAWZkuxh4uaMXJc6PPSwiUhPF5vdlyL4-P4iVUAIQ0YBb7ntREUglgcg05Us9rgzQ44GdMg+PppfIDrHRZ3la2u5AGFKgVN9tJnLLBufxhZAglDkZcjJVxZepvPlmZQA)
+
+To make our `SHIPPING_METHOD` we use the `type ObjectValues<T> = T[keyof T] ` helper type to access not the keys, but the object values. This way we even imitated enums to the “ease of refactoring” extent as you can see, if you eventually need to change some key, just “rename the symbol” in your -vs code- editor as you would do with enums, no “find and replace”.
+
+In the above example, the service sends us a shipping method that could be one of the keys of our object, and we store that as the corresponding value, which type is of course built from the values of our object (the uppercase ones).
+
+What if it was the other way around: our type is constituted of the keys of our object. We could’ve just gotten the type using `keyof typeof Our_Object`. Another fun example to illustrate, here we want to get the log level we’ll print, which are the more human readable form of our set of constants that constitute our type:
+
+```ts
+const LOG_LEVEL = {
+  DEBUG: "Debug",
+  ERROR: "Error",
+  WARNING: "Warning",
+} as const;
+
+type LogLevel = keyof typeof LOG_LEVEL;
+
+function log(message: string, level: LogLevel) {
+  switch (level) {
+    case "ERROR":
+      console.log(`${LOG_LEVEL[level]}: Dont panic, but ${message}`);
+    default:
+      console.log(`${LOG_LEVEL[level]}: ${message}`);
+  }
+}
+
+log("satellite exploded", "ERROR");
+```
+
+However, here we can only use string literals wherever our `LOG_LEVEL` type is expected, as we would usually do with barebone union types, because the type is built from the keys of our object.
+
+Otherwise, and to complete all possible options, a simpler way is to just get our type from the values of an array of possible delivery types. But we’ll always have our array in case we need to iterate over it:
+
+```ts
+const LOG_LEVEL = ["INFO", "ERROR", "WARNING"] as const;
+
+type LOG_LEVEL = typeof LOG_LEVEL[number];
+
+const logLevel: LOG_LEVEL = "INFO";
+
+// iterate over log levels
+for (const logLevel of LOG_LEVEL) {
+  // do your stuff
+}
+```
+
+## Bonus Points
+
+1. You can’t extend enums like you can do with Union Types:
+
+```ts
+type LOG_LEVEL = "ERROR" | "INFO" | "WARNING";
+
+type MY_LOG_LEVEL = LOG_LEVEL & "VERBOSE";
+```
+
+2. You can’t have mixed types in your enums like you can with union types, although this one I admit you have to know what you’re doing to not complicate stuff:
+
+3. And finally you need to import enums to use them unlike union types of course.
+
+## What should I Use?
+
+The one to use depends on your case. The examples given above are not really exclusive to their cases. But a rule of thumb could be to start off with simple union types, which will suffice in most cases. Then probably if you find out you just need an iterable union type, upgrade to the array version. Otherwise, if the values of your union type are not self descriptive or need the kind of key/value mapping enums offer, use the object version as you see fit.
+
+And don’t forget to ban enums from your code with the `no-restricted-syntax` rule of ESLint as outlined [here](https://github.com/typescript-eslint/typescript-eslint/issues/561#issuecomment-496664453).
+
+#### Footnotes
+
+(1) The values are only needed at compile-time (i.e., not used in the output like printed to the screen or, for example, a menu of a set of options) and The values correspond to their name (no need for mapping)
