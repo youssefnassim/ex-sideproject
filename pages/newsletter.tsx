@@ -19,7 +19,7 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
         <MDXRemote components={components} {...mdxSource} />
         <div className="fixed bottom-2 right-2">
           <Link legacyBehavior href="/">
-            <a className="flex gap-1 hover:gap-2 transition-all px-2 py-1 text-lg uppercase font-medium text-red-600">
+            <a className="flex gap-1 hover:gap-2 transition-all px-2 py-1 text-3xl uppercase font-medium text-[#71FA4C]">
               <span>&larr;</span>
               <span>Exit</span>
             </a>

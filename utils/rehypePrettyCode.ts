@@ -1,9 +1,9 @@
 import { type Options } from "rehype-pretty-code";
 import { visit } from "unist-util-visit";
 
-const WRAPPER_DIV = "rounded-2xl bg-[#0E1116] mb-5";
+const WRAPPER_DIV = "rounded-2xl bg-[#0E1116] my-5";
 const TITLE = "rounded-2xl px-5 py-2 font-mono text-[#C9D1D9] bg-[#171B21]";
-const PRE = "py-3 overflow-x-auto leading-7";
+const PRE = "py-4 overflow-x-auto leading-7";
 const CODE =
   "grid [&>span]:border-l-4 [&>span]:border-l-transparent [&>span]:pl-3 [&>span]:pr-5";
 // const LINE = "px-5";

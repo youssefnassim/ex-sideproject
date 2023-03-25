@@ -23,7 +23,7 @@ export default function GreenEmojiFace({ className }: { className: string }) {
 
   return (
     <div className={className}>
-      <GreenSmileyFace className="[&>path]:stroke-[#71FA4C] [&>path]:fill-[#71FA4C] animate-rotation" />
+      <GreenSmileyFace className="h-full [&>path]:stroke-[#71FA4C] [&>path]:fill-[#71FA4C] animate-rotation" />
     </div>
   );
 }

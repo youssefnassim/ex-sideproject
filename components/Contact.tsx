@@ -13,7 +13,7 @@ export default function Contact() {
           className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-900 dark:hover:border-neutral-500 transition cursor-pointer"
           onClick={() => setIsEmailVisible(true)}
         >
-          Get in touch
+          Email address
         </span>
       )}
     </>

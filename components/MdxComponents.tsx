@@ -13,40 +13,42 @@ export const components = {
   ),
   h1: (props: any) => (
     <h1
-      className="uppercase text-xl font-medium pt-10 mb-4 text-center"
+      className="text-center uppercase text-2xl font-medium mt-10 mb-4 text-center"
       {...props}
     />
   ),
   h2: (props: any) => (
     <h2
-      className="relative uppercase text-lg font-medium pt-4 mb-4"
+      className="text-center relative uppercase text-xl font-medium mt-4 mb-4"
       {...props}
     />
   ),
   h3: (props: any) => (
     <h3
-      className="relative uppercase text-sm font-medium pt-4 mb-4"
+      className="text-center relative uppercase text-base font-medium mt-4 mb-4"
       {...props}
     />
   ),
   h4: (props: any) => (
     <h4
-      className="relative uppercase text-xs font-medium pt-4 mb-4"
+      className="text-center relative uppercase text-sm font-medium mt-4 mb-4"
       {...props}
     />
   ),
   h5: (props: any) => (
-    <h5 className="relative text-xs font-medium pt-2 mb-4" {...props} />
+    <h5
+      className="text-center relative text-sm font-medium mt-2 mb-4"
+      {...props}
+    />
   ),
   h6: (props: any) => (
-    <h6 className="relative text-xs font-medium pt-2 mb-4" {...props} />
+    <h6
+      className="text-center relative text-xs font-medium mt-2 mb-4"
+      {...props}
+    />
   ),
-  ul: (props: any) => (
-    <ul className="list-disc text-sm space-y-1 pl-8 mb-4" {...props} />
-  ),
-  ol: (props: any) => (
-    <ol className="list-decimal text-sm space-y-1 pl-8 mb-4" {...props} />
-  ),
+  ul: (props: any) => <ul className="list-disc space-y-1 pl-8" {...props} />,
+  ol: (props: any) => <ol className="list-decimal space-y-1 pl-8" {...props} />,
   blockquote: (props: any) => (
     <blockquote className="pl-6 text-xl italic" {...props} />
   ),

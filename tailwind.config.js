@@ -9,6 +9,9 @@ module.exports = {
   darkMode: "class",
   theme: {
     extend: {
+      fontSize: {
+        "2xl": ["1.4rem", "1.5"],
+      },
       fontFamily: {
         sans: [
           "neue-haas-grotesk-text",
@@ -24,11 +27,16 @@ module.exports = {
       },
       animation: {
         rotation: "rotation 10s linear infinite",
+        "3D-Y-rotation": "3D-Y-rotation 7s linear infinite",
       },
       keyframes: {
         rotation: {
           "0%": { transform: "rotate(0deg)" },
-          "100%": { transform: "rotate(359deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
+        "3D-Y-rotation": {
+          "0%": { transform: "rotateY(0deg)" },
+          "100%": { transform: "rotateY(360deg)" },
         },
       },
     },
