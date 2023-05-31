@@ -169,7 +169,7 @@ Otherwise, and to complete all possible options, a simpler way is to just get ou
 ```ts
 const LOG_LEVEL = ["INFO", "ERROR", "WARNING"] as const;
 
-type LOG_LEVEL = typeof LOG_LEVEL[number];
+type LOG_LEVEL = (typeof LOG_LEVEL)[number];
 
 const logLevel: LOG_LEVEL = "INFO";
 

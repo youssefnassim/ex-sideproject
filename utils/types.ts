@@ -9,4 +9,8 @@ export type PostMeta = {
   author: string;
 };
 
-export type Post = { frontMatter: PostMeta; slug: string };
+export type Post = {
+  frontMatter: PostMeta;
+  slug: string;
+  tagSelected: boolean;
+};

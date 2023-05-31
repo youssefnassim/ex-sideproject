@@ -14,6 +14,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
+          "Rubisk",
           "neue-haas-grotesk-text",
           "-apple-system",
           "BlinkMacSystemFont",
@@ -26,8 +27,8 @@ module.exports = {
         ],
       },
       animation: {
-        rotation: "rotation 10s linear infinite",
-        "3D-Y-rotation": "3D-Y-rotation 7s linear infinite",
+        rotation: "rotation 30s linear infinite",
+        "3D-Y-rotation": "3D-Y-rotation 10s linear infinite",
       },
       keyframes: {
         rotation: {

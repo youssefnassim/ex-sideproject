@@ -19,7 +19,7 @@ export const components = {
   ),
   h2: (props: any) => (
     <h2
-      className="text-center relative uppercase text-xl font-medium mt-4 mb-4"
+      className="text-center relative uppercase text-xl font-medium mt-10 mb-6"
       {...props}
     />
   ),

@@ -7,7 +7,7 @@ export default function Contact() {
   return (
     <>
       {isEmailVisible ? (
-        <CopiableText>youssef@boringstuff.net</CopiableText>
+        <CopiableText>hi@youssefnassim.com</CopiableText>
       ) : (
         <span
           className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-900 dark:hover:border-neutral-500 transition cursor-pointer"

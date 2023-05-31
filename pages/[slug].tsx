@@ -43,7 +43,7 @@ const Post: NextPage<PostProps> = ({ frontMatter, slug, mdxSource }) => {
           rel="stylesheet"
         />
       </Head>
-      <Themetoggler />
+      {/* <Themetoggler /> */}
       <div className="w-[100px] top-2.5 left-2.5 fixed hidden">
         <Link legacyBehavior href="/">
           <a className="flex font-['marydale'] uppercase font-bold text-xl">
@@ -52,18 +52,18 @@ const Post: NextPage<PostProps> = ({ frontMatter, slug, mdxSource }) => {
           </a>
         </Link>
       </div>
-      <article className="py-16 px-4 md:px-10 xl:w-[850px] dark:xl:w-[850px] lg:w-3/5md:w-2/3 mx-auto">
+      <article className="py-16 px-4 md:px-0 md:px-10 max-w-[850px] lg:w-3/5md:w-2/3 mx-auto">
         <h1 className="uppercase text-3xl font-medium mb-6 text-center">
           {frontMatter.title}
         </h1>
-        <p className="uppercase fonts-['system-ui'] text-xl font-medium mb-5 text-center">
+        <p className="uppercase fonts-['system-ui'] text-xl font-medium mb-8 text-center">
           <time dateTime={format(publishedAt, "y-MM-dd")}>
             {format(publishedAt, "d LLLL y")}
             {` — ${frontMatter.readingTime} min read`}
           </time>
         </p>
         {frontMatter.tags && (
-          <p className="uppercase fonts-['system-ui'] text-xl font-medium mb-8 text-center">
+          <p className="uppercase fonts-['system-ui'] text-xl font-medium mb-8 text-center hidden">
             Tagged in:{" "}
             {frontMatter.tags.map(
               (tag, i) =>
@@ -71,11 +71,11 @@ const Post: NextPage<PostProps> = ({ frontMatter, slug, mdxSource }) => {
             )}
           </p>
         )}
-        <div className="[&>p]:indent-5 [&>p]:mb-4 text-neutral-900 dark:text-inherit text-sm md:text-base font-medium">
+        <div className="[&>p]:indent-5 [&>p]:mb-6 [&>p]:fonts-['Source_Serif_Pro'] dark:text-inherit text-sm md:text-base font-medium">
           <MDXRemote components={components} {...mdxSource} />
         </div>
       </article>
-      <div className="fixed bottom-2 right-2">
+      <div className="fixed bottom-2 right-2 hidden">
         <Link legacyBehavior href="/">
           <a className="flex gap-1 hover:gap-2 transition-all px-2 py-1 text-3xl uppercase font-medium text-[#71FA4C]">
             <span>&larr;</span>

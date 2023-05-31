@@ -25,6 +25,7 @@ export function getAllPosts() {
     return {
       frontMatter: frontMatter as PostMeta,
       slug: filename.split(".")[0],
+      tagSelected: false,
     };
   });
 }

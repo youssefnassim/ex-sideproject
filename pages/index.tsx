@@ -15,83 +15,103 @@ import GreenEmojiFace from "components/GreenEmojiFace";
 import CopiableText from "components/CopiableText";
 
 const LINK =
-  "border-b-4 border-transparent hover:border-b-4 hover:border-neutral-900 dark:hover:border-neutral-500 transition";
+  "border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800 dark:hover:border-neutral-500 transition";
 const PICTOGRAM =
   "h-[70px] [&_path]:stroke-[#0055ea][&>path]:fill-[#0055ea] dark:[&_path]:stroke-neutral-600 dark:[&>path]:fill-neutral-600";
-
-const fontVariants = [
-  "uppercase",
-  "italic",
-  "lowercase",
-  "font-sans text-2xl md:text-3xl",
-  "font-bold",
-];
 
 const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   posts,
 }) => {
   return (
     <div className="py-20">
-      <Themetoggler />
-      {/* BoriNg StuFf */}
-      <header className="mb-16">
-        <div className="w-full font-[serif] text-3xl md:text-4xl tracking-tighter text-center leading-none justify-center hidden">
-          {"Boring stuff".split("").map((c, i) => {
-            const stylesCount = Math.floor(Math.random() * 3);
-            let fontStyle = "";
-            for (let i = 0; i < stylesCount; i++) {
-              fontStyle += ` ${fontVariants[Math.floor(Math.random() * 5)]}`;
-            }
-            return (
-              <span key={i} className={fontStyle}>
-                {c}
-              </span>
-            );
-          })}
+      {/* <Themetoggler /> */}
+      <header className="w-3/5 mx-auto mb-10 flex justify-center hidden">
+        <div className="text-center font-['marydale'] font-bold uppercase text-[55px] leading-none tracking-tighter bg-clip-text bg-gradient-to-t from-[#aaa] to-neutral-800 text-fill-color-transparent--">
+          Youssef <br />
+          Nassim
         </div>
+      </header>
+      <header className="mb-10">
         <div
           style={{
             transformStyle: "preserve-3d",
             transformOrigin: "center center",
           }}
-          className="relative w-[380px] md:w-[550px] h-[80px] mx-auto animate-3D-Y-rotation font-medium uppercase text-5xl md:text-7xl text-nesutral-500 darsk:text-neutral-400 leading-none tracking-tighter"
+          className="relative w-[384px] md:w-[534px] h-[80px] mx-auto animate-3D-Y-rotation font-medium uppercase text-[2.70rem] md:text-6xl darsk:text-neutral-400 leading-none tracking-tighter"
         >
-          <span className="absolute">Boring Stuff</span>
-          <span className="absolute" style={{ transform: `translateZ(1px)` }}>
-            Boring Stuff
+          <span className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent">
+            Youssef Nassim
           </span>
-          <span className="absolute" style={{ transform: `translateZ(2px)` }}>
-            Boring Stuff
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent-"
+            style={{ transform: `translateZ(1px)` }}
+          >
+            Youssef Nassim
           </span>
-          <span className="absolute" style={{ transform: `translateZ(3px)` }}>
-            Boring Stuff
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent-"
+            style={{ transform: `translateZ(2px)` }}
+          >
+            Youssef Nassim
           </span>
-          <span className="absolute" style={{ transform: `translateZ(4px)` }}>
-            Boring Stuff
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent-"
+            style={{ transform: `translateZ(3px)` }}
+          >
+            Youssef Nassim
           </span>
-          <span className="absolute" style={{ transform: `translateZ(5px)` }}>
-            Boring Stuff
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent-"
+            style={{ transform: `translateZ(4px)` }}
+          >
+            Youssef Nassim
           </span>
-          <span className="absolute" style={{ transform: `translateZ(6px)` }}>
-            Boring Stuff
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent-"
+            style={{ transform: `translateZ(5px)` }}
+          >
+            Youssef Nassim
           </span>
-          <span className="absolute" style={{ transform: `translateZ(7px)` }}>
-            Boring Stuff
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent-"
+            style={{ transform: `translateZ(6px)` }}
+          >
+            Youssef Nassim
           </span>
-          <span className="absolute" style={{ transform: `translateZ(8px)` }}>
-            Boring Stuff
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent-"
+            style={{ transform: `translateZ(7px)` }}
+          >
+            Youssef Nassim
           </span>
-          <span className="absolute" style={{ transform: `translateZ(9px)` }}>
-            Boring Stuff
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent-"
+            style={{ transform: `translateZ(8px)` }}
+          >
+            Youssef Nassim
           </span>
-          <span className="absolute" style={{ transform: `translateZ(10px)` }}>
-            Boring Stuff
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent-"
+            style={{ transform: `translateZ(9px)` }}
+          >
+            Youssef Nassim
           </span>
+          <span
+            className="absolute bg-clip-text bg-gradient-to-t from-[#666] to-black dark:from-[#999] dark:to-neutral-600 text-fill-color-transparent"
+            style={{ transform: `translateZ(10px)` }}
+          >
+            Youssef Nassim
+          </span>
+        </div>
+        <div className="mt-2 xl:w-1/2 md:w-3/5 mx-auto uppercase text-center text-xl md:text-2xl hidden">
+          <span className="">Web developer, </span>
+          Building <span className="normal-case">OFFF.TO</span>
         </div>
       </header>
 
       <main className="flex flex-col gap-3 px-2 xl:w-1/2 md:w-3/5 mx-auto text-center">
-        <GreenEmojiFace className="h-[140px] md:h-[160px] fixed right-[35%] translate-x-[65%] md:translate-x-[35%]" />
+        <GreenEmojiFace className="h-[140px] md:h-[160px] fixed top-[80px] right-[35%] translate-x-[65%] md:translate-x-[35%] hidden" />
+        <h2 className="uppercase text-2xl font-medium">Latest posts</h2>
         <FilterablePostFeed posts={posts} />
         <div className="mt-10">
           <CuteTile
@@ -99,26 +119,26 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
             label="Get in touch"
           />
         </div>
-        <h2 className="uppercase text-xl md:text-2xl font-medium">
+        <h2 className="uppercase text-2xl font-medium">
           <Contact />
         </h2>
-        <h2 className="uppercase text-xl md:text-2xl font-medium">
+        <h2 className="uppercase text-2xl font-medium">
           <Link legacyBehavior href="https://twitter.com/youssef_nassim">
-            <a className="border-b-4 border-transparent hover:border-b-4 hover:border-black dark:hover:border-neutral-500 transition">
+            <a className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800 dark:hover:border-neutral-500 transition">
               Twitter
             </a>
           </Link>
         </h2>
-        <h2 className="uppercase text-xl md:text-2xl font-medium">
+        <h2 className="uppercase text-2xl font-medium">
           <Link legacyBehavior href="https://twitter.com/youssef_nassim">
-            <a className="border-b-4 border-transparent hover:border-b-4 hover:border-black dark:hover:border-neutral-500 transition">
+            <a className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800 dark:hover:border-neutral-500 transition">
               Github
             </a>
           </Link>
         </h2>
         <h2 className="uppercase text-xl md:text-2xl font-medium">
           <Link legacyBehavior href="/newsletter">
-            <a className="border-b-4 border-transparent hover:border-b-4 hover:border-black dark:hover:border-neutral-500 transition">
+            <a className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800 dark:hover:border-neutral-500 transition">
               Newsletter
             </a>
           </Link>

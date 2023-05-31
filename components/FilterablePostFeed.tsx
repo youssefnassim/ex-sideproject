@@ -8,6 +8,7 @@ const tags = [
   { name: "TypeScript", color: "text-blue-500" },
   { name: "Git", color: "text-orange-500" },
   { name: "Web", color: "text-green-500" },
+  { name: "React", color: "text-blue-500" },
 ];
 
 export default function FilterablePostFeed({ posts }: { posts: Post[] }) {
@@ -19,41 +20,48 @@ export default function FilterablePostFeed({ posts }: { posts: Post[] }) {
     .filter((v) => v[1])
     .map((v) => v[0]);
 
-  const filteredPosts =
-    (state === MultiCheckboxState.UNCHECKED && posts) ||
-    posts.filter((post) =>
+  let postsTaggified = posts;
+  if (state && state !== MultiCheckboxState.UNCHECKED) {
+    postsTaggified = posts.map((post) =>
       selectedTags.every((tag) => post.frontMatter.tags?.includes(tag))
+        ? { ...post, tagSelected: true }
+        : post
     );
+  }
 
-  const leftPossibleTags = Array.from(
-    new Set(filteredPosts.flatMap((post) => post.frontMatter.tags))
-  );
+  const leftPossibleTags =
+    selectedTags.length === 0
+      ? tags.map((t) => t.name)
+      : Array.from(
+          new Set(
+            postsTaggified
+              .filter((post) => post.tagSelected)
+              .flatMap((post) => post.frontMatter.tags)
+          )
+        );
 
   return (
     <>
-      <div className="text-xl md:text-2xl mx-auto text-center uppercase font-medium mb-2">
+      <div className="text-2xl mx-auto text-center uppercase font-medium mb-2">
         {tags.map((tag, i) => (
           <React.Fragment key={tag.name}>
             <Checkbox
               {...register(tag.name)}
               disabled={!leftPossibleTags.includes(tag.name)}
             />
-            {(i + 1) % 3 === 0 ? <br /> : ""}
-            <span
-              className={`${
-                !leftPossibleTags.includes(tag.name) && "opacity-20"
-              }`}
-            >
-              {i < tags.length - 1 && (i + 1) % 3 !== 0 ? " / " : ""}
+            {(i + 1) % 4 === 0 ? <br /> : ""}
+            <span className={`${!leftPossibleTags.includes(tag.name) && ""}`}>
+              {i < tags.length - 1 && (i + 1) % 4 !== 0 ? " / " : ""}
             </span>
           </React.Fragment>
         ))}
       </div>
       <div className="text-center">
-        {filteredPosts.map((post, i) => (
+        {postsTaggified.map((post, i) => (
           <PostCard
             key={`${post.slug}-${i}`}
             slug={post.slug}
+            tagSelected={post.tagSelected}
             {...post.frontMatter}
           />
         ))}

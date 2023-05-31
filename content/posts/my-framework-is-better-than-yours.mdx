@@ -1,0 +1,118 @@
+---
+title: "My Framework is Better Than Yours"
+excerpt: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Praesent elementum facilisis leo vel fringilla est ullamcorper eget. At imperdiet dui accumsan sit amet nulla facilities morbi tempus."
+publishedAt: "2023-05-31T21:13:00.824Z"
+readingTime: 7
+status: PUBLISHED
+tags:
+  - "React"
+  - "Vue"
+  - "Svelte"
+  - "Solid"
+  - "Front-end"
+  - "Web"
+author: "Youssef Nassim"
+---
+
+I spend my days and nights building user interfaces, making it the tech bubble I’m trapped in.
+And It's not uncommon for passionate debates to arise within that bubble. Recently, library authors and users of different frameworks mainly argued about which reactivity model is best or should be the next big thing or whatever.
+
+This tech-stack bias phenomenon is obviously not related to frontend frameworks only, but the same goes with the whole tech industry from back to front, data to security. You likely have a soft spot for the technology you’re working with, and that’s a perfectly normal thing.
+
+Without further ado, the frameworks participating in the contest are React, Vue, Svelte, and Solid. Sorry Angular guys, Qwik citizens, and the rest not mentioned, but I have picked the popular kids, except for Solid, which has intrigued me enough to look at it.
+
+Before I tell you my favorite framework, which is better than yours by the way, we will have to specify the criteria on which I’ll be basing my decision. Jokes aside, I hope there will be some pragmatism, but I’ll allow myself some shallowness as well, so don’t hesitate to get triggered.
+
+We will cover the reactivity models because that’s what all the fuss is about. DX because I like to enjoy my work. Performance because why not, and easiest to set up Auth for because gone are the days of rolling your own auth from scratch.
+
+## Reactivity Model
+
+Who says reactivity in UI says the three basic concepts we use to express it: state, derived state, and effects. Here’s how that looks in all four of our frameworks:
+
+```tsx title="React"
+// state
+const [counter, setCounter] = useState(0);
+
+// derived state
+const countDisplay = `Count is ${counter}`;
+
+// effect
+useEffect(() => {
+  console.log(countDisplay);
+}, [counter]);
+```
+
+```ts title="Vue"
+// state
+const count = ref(0);
+
+// derived state
+const countDisplay = computed(() => `Count is ${count}`);
+
+// effect
+watchEffect(() => {
+  console.log(countDisplay);
+});
+```
+
+```ts title="Svelte"
+// state
+let count = 0;
+
+// derived state
+$: countDisplay = `Count is ${count}`;
+
+// effect
+$: console.log(countDisplay);
+```
+
+```ts title="Solid"
+// state
+const [count, setCount] = createSignal(0);
+
+// derived state
+const countDisplay = createMemo(() => `Count is ${count()}`);
+
+// effect
+createEffect(() => {
+  console.log(countDisplay());
+});
+```
+
+Since Vue refs are basically signals, I’m ruling Solid out, especially since I’m not a fan of the function calls syntax, but that could change in the future (many of us hated JSX at first sight). Speaking of syntax, If I were basing my choice solely on looks, Svelte would’ve been the clear winner; I don’t think it can get any more elegant than that.
+
+If we’re talking reactivity models, we’re simply dealing with two camps; Vue, Svelte, and Solid’s fine-grained reactivity vs. React’s rerendering everything.
+
+With all the fun that the fine-grained guys seem to be having with their signals, I like the “blowing your whole UI on each state change” model of React. Probably because it enables reactivity by default; otherwise, it makes all the code of your component naturally reactive. For instance, we could’ve dropped the `useEffect` in the example above, and it will still log to the console on each `count` update. And if you noticed, the same behavior exempted us from using `useMemo` to compute the derived state. That’s why they call them escape hatches; the `useEffect` hook helps us escape the default over-reactive behavior of React and limit that to only some cases. And `useMemo` would’ve been useful only if we had some heavy computation to make it justifiable for memoization, which is again just escaping React’s reactivity. For me, and contrary to what someone else might say, this behavior makes components more predictable and easier to debug.
+
+All that said, I remain indecisive so far. And since I’m not picking a winning side in this section of the battle, React, the second camp, didn’t lose here, but I might have a preference amongst the three of the first one. Let’s just say the elegance of Svelte is a sight to be seen, and it must be a joy to work with, which brings me to the next point, DX.
+
+## Developer Experience
+
+I believe developer experience is tightly related to the framework’s ecosystem, and frontend frameworks are now just the basic building blocks. So I think the debate around using a meta-framework should be over with for an optimal DX.
+
+Anyhow, this might look like I’m simping for Svelte, and this is coming from someone who generally avoids solutions with too much magic, but I have a feeling It could have the best DX. Using SvelteKit, of course, which I like everything about, from routing to data loading and state management. But then Nuxt.js of Vue, on the other side, comes with a crap load of batteries, more than needed, but beautiful and useful ones nonetheless. Solid Start is also very promising since Ryan tried to take the best of all worlds and smash it into one package, although it’s still a bit too bleeding edge for me.
+
+React, on the other hand, is another beast, so much so that I have choice paralysis just when picking between the available meta frameworks.
+
+But since I only quickly fiddled with most of them, which explains the lack of depth in this section, once more, I’m still indecisive based on developer experience.
+
+## Performance
+
+This is where tech bloggers usually blast readers with benchmarks after benchmarks about rendering performance, bundle sizes, and whatnot. All that stuff doesn’t matter much to me because I know that all the mentioned frameworks are most likely performant enough for whatever you throw at them.
+
+For a long time, frameworks like Svelte and Solid made headlines because of their compile techniques and lightweight runtimes, but so is Vue now with their new compilation strategy called Vapor, which is more advanced than their hybrid runtime/compiler model. Sure, it’s inspired by Solid, but frameworks take from each other as usual. Heck, even React has people on their side working on a compiler. Then there are server components with the zero-bundle-size promise, which is such a big paradigm shift that we still don’t know how it will turn out.
+
+Since most of what I build doesn’t exceed the average CRUD app, I’m not one to base my decision on fancy benchmarks anyhow. Besides, as the cliche says, bad enough code could cancel out any advantage, and well-optimized code…
+
+## Auth
+
+If you’ve reached this far, you probably think there’s no way I’ll settle based solely on authentication, which should be just one part of the stack. Well, sorry to drag you on for so long only to deceive you because, yes, that’s the selling point for me.
+
+Actually, I came from the world of Laravel some years ago, where auth is just one CLI command away. And even though I embraced the dispersion of the frontend world, I was always missing that warm feeling of a monolithic framework that sweats all the small -and dreadful- stuff for you, leaving you to focus on your core business logic. I will not exaggerate if I say that since I’ve been a full-stack guy -as in frontend plus a BFF framework stack- at least one-third of the time is spent learning and scaffolding stuff on my own. Auth is one of those pieces I always hated to set up.
+
+Long story short, some time ago, I came to know about a library that nailed authentication, which is as easy to implement as those drop-in commercial solutions but is open source. I’m talking about Auth.js, previously next-auth.js, which was initially made for Next.js. Besides, there is an abundance of solutions in the React ecosystem. Remix also has a battle-tested auth library, the one used in the recently revealed Epicstack of Kent.C.Dodds, another great full-stack stack with all the batteries and bells & whistles.
+
+So while I was recently thinking about my framework of choice, I found I can’t separate that from the whole tool belt. Hence and at most, all I can choose is the ecosystem (have I said ecosystem enough times already?). For now, it will be React and its ecosystem (one last time) because I like it nevertheless and because of the whole stack.
+
+On that terrible disappointment, see you in the next JavaScript debate about whatever will be trending, only this time; I’ll try to be more informative ;)
