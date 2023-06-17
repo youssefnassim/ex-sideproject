@@ -132,7 +132,7 @@ export default function FashionTimelineCard() {
               <button
                 key={index}
                 onClick={() => setUpfrontCard(index)}
-                className={`mr-2 -mt-[0px] bg-white border text-base font-medium inline-block w-[35px] h-[35px] rounded-full relative ${
+                className={`mr-2 -mt-[0px] bg-white border text-base font-bold inline-block w-[35px] h-[35px] rounded-full relative ${
                   upfrontCard === index ? CARDS_PAGER_SELECTED_CARDS : ""
                 }`}
               >

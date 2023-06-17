@@ -53,17 +53,17 @@ const Post: NextPage<PostProps> = ({ frontMatter, slug, mdxSource }) => {
         </Link>
       </div>
       <article className="py-16 px-4 md:px-0 md:px-10 max-w-[850px] lg:w-3/5md:w-2/3 mx-auto">
-        <h1 className="uppercase text-3xl font-medium mb-6 text-center">
+        <h1 className="uppercase text-[1.7rem] font-bold mb-6 text-center">
           {frontMatter.title}
         </h1>
-        <p className="uppercase fonts-['system-ui'] text-xl font-medium mb-8 text-center">
+        <p className="uppercase fonts-['system-ui'] text-xl font-bold mb-8 text-center">
           <time dateTime={format(publishedAt, "y-MM-dd")}>
             {format(publishedAt, "d LLLL y")}
             {` — ${frontMatter.readingTime} min read`}
           </time>
         </p>
         {frontMatter.tags && (
-          <p className="uppercase fonts-['system-ui'] text-xl font-medium mb-8 text-center hidden">
+          <p className="uppercase fonts-['system-ui'] text-xl font-bold mb-8 text-center hidden">
             Tagged in:{" "}
             {frontMatter.tags.map(
               (tag, i) =>
@@ -71,13 +71,13 @@ const Post: NextPage<PostProps> = ({ frontMatter, slug, mdxSource }) => {
             )}
           </p>
         )}
-        <div className="[&>p]:indent-5 [&>p]:mb-6 [&>p]:fonts-['Source_Serif_Pro'] dark:text-inherit text-sm md:text-base font-medium">
+        <div className="[&>p]:indent-5 [&>p]:mb-6 [&>p]:fonts-['Source_Serif_Pro'] [&>p]:font-bold dark:text-inherit text-base md:text-lgs">
           <MDXRemote components={components} {...mdxSource} />
         </div>
       </article>
       <div className="fixed bottom-2 right-2 hidden">
         <Link legacyBehavior href="/">
-          <a className="flex gap-1 hover:gap-2 transition-all px-2 py-1 text-3xl uppercase font-medium text-[#71FA4C]">
+          <a className="flex gap-1 hover:gap-2 transition-all px-2 py-1 text-3xl uppercase font-bold text-[#71FA4C]">
             <span>&larr;</span>
             <span>Exit</span>
           </a>

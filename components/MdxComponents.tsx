@@ -13,37 +13,37 @@ export const components = {
   ),
   h1: (props: any) => (
     <h1
-      className="text-center uppercase text-2xl font-medium mt-10 mb-4 text-center"
+      className="text-center uppercase text-2xl font-bold mt-10 mb-4 text-center"
       {...props}
     />
   ),
   h2: (props: any) => (
     <h2
-      className="text-center relative uppercase text-xl font-medium mt-10 mb-6"
+      className="text-center relative uppercase text-xl font-bold mt-10 mb-6"
       {...props}
     />
   ),
   h3: (props: any) => (
     <h3
-      className="text-center relative uppercase text-base font-medium mt-4 mb-4"
+      className="text-center relative uppercase text-base font-bold mt-4 mb-4"
       {...props}
     />
   ),
   h4: (props: any) => (
     <h4
-      className="text-center relative uppercase text-sm font-medium mt-4 mb-4"
+      className="text-center relative uppercase text-sm font-bold mt-4 mb-4"
       {...props}
     />
   ),
   h5: (props: any) => (
     <h5
-      className="text-center relative text-sm font-medium mt-2 mb-4"
+      className="text-center relative text-sm font-bold mt-2 mb-4"
       {...props}
     />
   ),
   h6: (props: any) => (
     <h6
-      className="text-center relative text-xs font-medium mt-2 mb-4"
+      className="text-center relative text-xs font-bold mt-2 mb-4"
       {...props}
     />
   ),

@@ -50,7 +50,7 @@ function Checkbox({
         )}
         <label
           htmlFor={name}
-          className={`uppercase select-none hover:cursor-pointer md:leading-10 ${
+          className={`uppercsase select-none hover:cursor-pointer md:leading-10 ${
             disabled && "opacity-20 dark:opacity-30"
           } transition-all ${color}`}
         >

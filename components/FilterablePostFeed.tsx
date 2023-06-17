@@ -42,7 +42,7 @@ export default function FilterablePostFeed({ posts }: { posts: Post[] }) {
 
   return (
     <>
-      <div className="text-2xl mx-auto text-center uppercase font-medium mb-2">
+      <div className="text-xl md:text-2xl mx-auto text-center uppercase font-bold mb-2">
         {tags.map((tag, i) => (
           <React.Fragment key={tag.name}>
             <Checkbox

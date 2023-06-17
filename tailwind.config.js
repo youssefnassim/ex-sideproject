@@ -14,7 +14,7 @@ module.exports = {
       },
       fontFamily: {
         sans: [
-          "Rubisk",
+          "Rubik",
           "neue-haas-grotesk-text",
           "-apple-system",
           "BlinkMacSystemFont",

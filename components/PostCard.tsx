@@ -10,10 +10,10 @@ export default function PostCard({
 }: PostMeta & { slug: string; tagSelected: boolean }) {
   const publishedAt = new Date(rest.publishedAt);
   return (
-    <h2 className="uppercase text-2xl md:text-2xl font-medium mb-2 md:mb-3">
+    <h2 className="uppercase text-xl md:text-2xl font-bold mb-4 md:mb-3">
       <Link legacyBehavior href={slug}>
         <a
-          className={`transition border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800 dark:hover:border-neutral-500 ${
+          className={`transition border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800/80 dark:hover:border-neutral-500 ${
             tagSelected ? "shadow-[inset_0_-17px_0_#71FA4C]" : ""
           }`}
         >

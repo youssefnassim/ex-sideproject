@@ -8,7 +8,7 @@ export default function PageSwitcher() {
     <div className="flex fixed bottom-4 right-4 bg-neutral-500 rounded-full rounded-full shadow-xl">
       <Link legacyBehavior href="/">
         <a
-          className={`px-2 py-1 text-xs text-white font-medium uppercase rounded-full ${
+          className={`px-2 py-1 text-xs text-white font-bold uppercase rounded-full ${
             router.pathname === "/" &&
             "bg-white text-gray-800 shadow-[0px_2px_5px_0px_rgba(0,0,0,0.2)]"
           }`}
@@ -18,7 +18,7 @@ export default function PageSwitcher() {
       </Link>
       <Link legacyBehavior href="/links">
         <a
-          className={`px-2 py-1 text-xs text-white font-medium uppercase rounded-full ${
+          className={`px-2 py-1 text-xs text-white font-bold uppercase rounded-full ${
             router.pathname === "/links" &&
             "bg-white text-gray-800 shadow-[0px_2px_5px_0px_rgba(0,0,0,0.2)]"
           }`}
