@@ -10,7 +10,6 @@
     "test": "jest --watch"
   },
   "dependencies": {
-    "@next/font": "^13.4.5",
     "@vercel/analytics": "^0.1.5",
     "date-fns": "^2.29.2",
     "gray-matter": "^4.0.3",
