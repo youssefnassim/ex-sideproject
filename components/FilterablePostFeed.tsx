@@ -1,3 +1,5 @@
+"use client";
+
 import React from "react";
 import { Post } from "utils/types";
 import Checkbox from "components/Checkbox";

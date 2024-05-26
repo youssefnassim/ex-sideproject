@@ -1,33 +1,24 @@
-import type { InferGetStaticPropsType, NextPage } from "next";
 import FilterablePostFeed from "components/FilterablePostFeed";
-import { getAllPosts } from "utils/postFetchers";
 import Themetoggler from "components/ThemeToggler";
-import InboxDrawing from "../public/inbox-drawing.svg";
 import EmailDrawing from "../public/email-drawing.svg";
-import WebLogsDrawing from "../public/weblogs-drawing.svg";
-import TwitterDrawing from "../public/twitter-drawing.svg";
-import GithubDrawing from "../public/github-drawing.svg";
-import SubscribeDrawing from "../public/subscribe-drawing.svg";
 import CuteTile from "components/CuteTile";
 import Contact from "components/Contact";
 import Link from "next/link";
 import GreenEmojiFace from "components/GreenEmojiFace";
-import CopiableText from "components/CopiableText";
+import { Post } from "utils/types";
 
 const LINK =
   "border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800 dark:hover:border-neutral-500 transition";
 const PICTOGRAM =
   "h-[70px] [&_path]:stroke-neutral-800/80 [&>path]:fill-neutral-800/80 dark:[&_path]:stroke-neutral-600 dark:[&>path]:fill-neutral-600";
 
-const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
-  posts,
-}) => {
+const Homepage = ({ posts }: { posts: Post[] }) => {
   return (
     <div className="py-20">
       <Themetoggler />
       <header className="mx-auto mb-10 flex justify-center">
         <div className="text-center font-['marydale'] font-[700] -rotate-2 uppercase text-4xl md:text-[55px] leading-none tracking-tight bg-clip-text- bg-gradient-to-t- from-[#aaa]- text-fill-color-transparent---">
-          Frontend Sucks
+          A Hacker News
         </div>
       </header>
 
@@ -72,20 +63,4 @@ const Home: NextPage<InferGetStaticPropsType<typeof getStaticProps>> = ({
   );
 };
 
-export const getStaticProps = () => {
-  const posts = getAllPosts()
-    .filter((post) => post.frontMatter.status === "PUBLISHED")
-    .sort(
-      (a, b) =>
-        Number(new Date(b.frontMatter.publishedAt)) -
-        Number(new Date(a.frontMatter.publishedAt))
-    );
-
-  return {
-    props: {
-      posts,
-    },
-  };
-};
-
-export default Home;
+export default Homepage;
