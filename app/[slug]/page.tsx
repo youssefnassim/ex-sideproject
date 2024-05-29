@@ -1,28 +1,62 @@
-import type { GetStaticPropsContext, NextPage } from "next";
-import { GetStaticPaths, InferGetStaticPropsType } from "next";
 import fs from "fs";
 import path from "path";
-import matter from "gray-matter";
-import { serialize } from "next-mdx-remote/serialize";
-import { MDXRemote } from "next-mdx-remote";
-import { ParsedUrlQuery } from "querystring";
+import { compileMDX } from "next-mdx-remote/rsc";
 import { PostMeta } from "utils/types";
 import { format } from "date-fns";
-import { components } from "components/MdxComponents";
 import rehypePrettyCode from "rehype-pretty-code";
 import { options, rehypePrettyCodeStyles } from "utils/rehypePrettyCode";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
-import ArrowBack from "../public/arrow-back.svg";
+import ArrowBack from "../../public/arrow-back.svg";
 import Link from "next/link";
-import Themetoggler from "components/ThemeToggler";
 import { HEADING_ANCHOR } from "utils/constants";
 import Head from "next/head";
+import { components } from "components/MdxComponents";
 
-type PostProps = InferGetStaticPropsType<typeof getStaticProps>;
+type PostPageProps = {
+  params: Awaited<ReturnType<typeof generateStaticParams>>[number];
+};
 
-const Post: NextPage<PostProps> = ({ frontMatter, slug, mdxSource }) => {
-  const publishedAt = new Date(frontMatter.publishedAt);
+async function getPost(slug: string) {
+  const source = fs.readFileSync(
+    path.join("content/posts", slug + ".mdx"),
+    "utf-8"
+  );
+
+  const { frontmatter, content } = await compileMDX<PostMeta>({
+    source,
+    components,
+    options: {
+      parseFrontmatter: true,
+      mdxOptions: {
+        rehypePlugins: [
+          [rehypePrettyCode, options],
+          rehypePrettyCodeStyles,
+          rehypeSlug,
+          [
+            rehypeAutolinkHeadings,
+            {
+              behavior: "wrap",
+              properties: {
+                className: [HEADING_ANCHOR],
+                target: "_self",
+              },
+            },
+          ],
+        ],
+      },
+    },
+  });
+
+  return {
+    frontmatter,
+    content,
+  };
+}
+
+export default async function PostPage({ params: { slug } }: PostPageProps) {
+  const { frontmatter, content } = await getPost(slug);
+  const publishedAt = new Date(frontmatter.publishedAt);
 
   return (
     <main className="mt-2 mb-8">
@@ -43,7 +77,6 @@ const Post: NextPage<PostProps> = ({ frontMatter, slug, mdxSource }) => {
           rel="stylesheet"
         />
       </Head>
-      {/* <Themetoggler /> */}
       <div className="w-[100px] top-2.5 left-2.5 fixed hidden">
         <Link legacyBehavior href="/">
           <a className="flex font-['marydale'] uppercase font-bold text-xl">
@@ -54,96 +87,37 @@ const Post: NextPage<PostProps> = ({ frontMatter, slug, mdxSource }) => {
       </div>
       <article className="py-16 px-4 md:px-0 md:px-10 max-w-[850px] lg:w-3/5md:w-2/3 mx-auto">
         <h1 className="uppercase text-[1.7rem] font-bold mb-6 text-center">
-          {frontMatter.title}
+          {frontmatter.title}
         </h1>
         <p className="uppercase fonts-['system-ui'] text-xl font-bold mb-8 text-center">
           <time dateTime={format(publishedAt, "y-MM-dd")}>
             {format(publishedAt, "d LLLL y")}
-            {` — ${frontMatter.readingTime} min read`}
+            {` — ${frontmatter.readingTime} min read`}
           </time>
         </p>
-        {frontMatter.tags && (
+        {frontmatter.tags && (
           <p className="uppercase fonts-['system-ui'] text-xl font-bold mb-8 text-center hidden">
             Tagged in:{" "}
-            {frontMatter.tags.map(
+            {frontmatter.tags.map(
               (tag, i) =>
-                `${tag}${i + 1 !== frontMatter.tags?.length ? ", " : ""}`
+                `${tag}${i + 1 !== frontmatter.tags?.length ? ", " : ""}`
             )}
           </p>
         )}
         <div className="[&>p]:indent-5 [&>p]:mb-6 [&>p]:fonts-['Source_Serif_Pro'] [&>p]:font-bold dark:text-inherit text-base md:text-lgs">
-          <MDXRemote components={components} {...mdxSource} />
+          {content}
         </div>
       </article>
-      <div className="fixed bottom-2 right-2 hidden">
-        <Link legacyBehavior href="/">
-          <a className="flex gap-1 hover:gap-2 transition-all px-2 py-1 text-3xl uppercase font-bold text-[#71FA4C]">
-            <span>&larr;</span>
-            <span>Exit</span>
-          </a>
-        </Link>
-      </div>
     </main>
   );
-};
+}
 
-export const getStaticPaths: GetStaticPaths = async () => {
+export async function generateStaticParams() {
   const files = fs.readdirSync(path.join("content/posts"));
 
   const paths = files.map((filename) => ({
-    params: {
-      slug: filename.replace(".mdx", ""),
-    },
+    slug: filename.replace(".mdx", ""),
   }));
 
-  return {
-    paths,
-    fallback: false,
-  };
-};
-
-type Params = ParsedUrlQuery & {
-  slug: string;
-};
-
-export const getStaticProps = async (
-  context: GetStaticPropsContext<Params>
-) => {
-  const { slug } = context.params!;
-
-  const markdownWithMeta = fs.readFileSync(
-    path.join("content/posts", slug + ".mdx"),
-    "utf-8"
-  );
-
-  const { data: frontMatter, content } = matter(markdownWithMeta);
-  const mdxSource = await serialize(content, {
-    mdxOptions: {
-      rehypePlugins: [
-        [rehypePrettyCode, options],
-        rehypePrettyCodeStyles,
-        rehypeSlug,
-        [
-          rehypeAutolinkHeadings,
-          {
-            behavior: "wrap",
-            properties: {
-              className: [HEADING_ANCHOR],
-              target: "_self",
-            },
-          },
-        ],
-      ],
-    },
-  });
-
-  return {
-    props: {
-      frontMatter: frontMatter as PostMeta,
-      slug,
-      mdxSource,
-    },
-  };
-};
-
-export default Post;
+  return paths;
+}

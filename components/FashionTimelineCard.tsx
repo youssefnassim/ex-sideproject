@@ -1,3 +1,5 @@
+"use client";
+
 import Image from "next/image";
 import { useState } from "react";
 import Thumbnail from "../public/assets/images/fashion-history-of-web-design/thumbnail.jpg";
