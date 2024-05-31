@@ -17,6 +17,11 @@ type PostPageProps = {
   params: Awaited<ReturnType<typeof generateStaticParams>>[number];
 };
 
+const requiredLazyComponents = (slug: string) =>
+  ({
+    "fashion-timeline-of-web-design": ["FashionTimelineCard"],
+  }[slug] ?? []);
+
 async function getPost(slug: string) {
   const source = fs.readFileSync(
     path.join("content/posts", slug + ".mdx"),
@@ -25,7 +30,7 @@ async function getPost(slug: string) {
 
   const { frontmatter, content } = await compileMDX<PostMeta>({
     source,
-    components,
+    components: components(requiredLazyComponents(slug)),
     options: {
       parseFrontmatter: true,
       mdxOptions: {

@@ -1,8 +1,10 @@
+import dynamic from "next/dynamic";
 import Image from "next/image";
 import CopiableText from "components/CopiableText";
-import FashionTimelineCard from "components/FashionTimelineCard";
 
-export const components = {
+const LAZY_COMPONENTS = ["FashionTimelineCard", "CopyableText"] as const;
+
+export const components = (lazyComponents?: string[]) => ({
   a: (props: any) => (
     <a
       className="text-blue-500 before:content-['→'] border-b-2 border-transparent hover:text-blue-500 hover:border-blue-500 transition"
@@ -57,8 +59,15 @@ export const components = {
       <Image alt={props.alt} className="rounded-[28px]" {...props} />
     </div>
   ),
+  // Lazy part
   CopiableText: ({ children }: { children: string }) => (
     <CopiableText>{children}</CopiableText>
   ),
-  FashionTimelineCard,
-};
+  ...(lazyComponents?.includes("FashionTimelineCard")
+    ? {
+        FashionTimelineCard: dynamic(
+          () => import("components/FashionTimelineCard")
+        ),
+      }
+    : {}),
+});

@@ -14,7 +14,7 @@ async function getPage() {
 
   const { frontmatter, content } = await compileMDX<PostMeta>({
     source,
-    components,
+    components: components(),
     options: {
       parseFrontmatter: true,
     },
