@@ -13,7 +13,7 @@ export const components = {
   ),
   h1: (props: any) => (
     <h1
-      className="text-center uppercase text-2xl font-bold mt-10 mb-4 text-center"
+      className="text-center uppercase text-2xl font-bold mt-10 mb-4"
       {...props}
     />
   ),

@@ -10,7 +10,6 @@ import rehypeSlug from "rehype-slug";
 import ArrowBack from "../../public/arrow-back.svg";
 import Link from "next/link";
 import { HEADING_ANCHOR } from "utils/constants";
-import Head from "next/head";
 import { components } from "components/MdxComponents";
 
 type PostPageProps = {
@@ -54,29 +53,20 @@ async function getPost(slug: string) {
   };
 }
 
+export async function generateMetadata({ params: { slug } }: PostPageProps) {
+  const post = await getPost(slug);
+
+  return {
+    title: `Frontend Sucks - ${post.frontmatter.title}`,
+  };
+}
+
 export default async function PostPage({ params: { slug } }: PostPageProps) {
   const { frontmatter, content } = await getPost(slug);
   const publishedAt = new Date(frontmatter.publishedAt);
 
   return (
     <main className="mt-2 mb-8">
-      {slug === "fashion-timeline-of-web-design" && (
-        <Head>
-          {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-          <link
-            href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&family=Open+Sans:wght@400&family=Inter:wght@700&family=Space+Grotesk:wght@400&display=swap"
-            rel="stylesheet"
-            key="fonts"
-          />
-        </Head>
-      )}
-      <Head>
-        {/* eslint-disable-next-line @next/next/no-page-custom-font */}
-        <link
-          href="https://fonts.googleapis.com/css2?family=JetBrains+Mono:wght@400;500;600;700&display=swap"
-          rel="stylesheet"
-        />
-      </Head>
       <div className="w-[100px] top-2.5 left-2.5 fixed hidden">
         <Link legacyBehavior href="/">
           <a className="flex font-['marydale'] uppercase font-bold text-xl">
@@ -85,7 +75,7 @@ export default async function PostPage({ params: { slug } }: PostPageProps) {
           </a>
         </Link>
       </div>
-      <article className="py-16 px-4 md:px-0 md:px-10 max-w-[850px] lg:w-3/5md:w-2/3 mx-auto">
+      <article className="py-16 px-4 md:px-10 max-w-[850px] lg:w-3/5md:w-2/3 mx-auto">
         <h1 className="uppercase text-[1.7rem] font-bold mb-6 text-center">
           {frontmatter.title}
         </h1>

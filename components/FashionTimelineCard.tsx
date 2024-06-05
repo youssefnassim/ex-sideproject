@@ -4,13 +4,37 @@ import Image from "next/image";
 import { useState } from "react";
 import Thumbnail from "../public/assets/images/fashion-history-of-web-design/thumbnail.jpg";
 import MinimalistThumbnail from "../public/assets/images/fashion-history-of-web-design/minimalist-thumbnail.png";
+import { Open_Sans, Space_Grotesk, Inter, Bitter } from "next/font/google";
+
+const open_sans = Open_Sans({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const space_grotesk = Space_Grotesk({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  weight: ["400", "700"],
+  display: "swap",
+});
+const bitter = Bitter({
+  subsets: ["latin"],
+  weight: ["700"],
+  display: "swap",
+});
 
 const cards = [
   {
     caption:
       "I doubt there was this “standard” notion of cards as a way to layout content at this period, but there you go, If it ever was, this is how it could’ve looked. This is what I referred to as the 2000s system font times.",
     styles: {
-      container: "border h-[385px] [&:not(dark)]:shadow-lg shadow-neutral-200",
+      container: "border h-[410px] [&:not(dark)]:shadow-lg shadow-neutral-200",
       image: "border h-[220px] p-1 m-3 flex mb-4",
       title: "font-[georgia] text-lg mb-2 px-3",
       description: "font-[verdana] mb-2 text-[13px] px-3",
@@ -23,7 +47,7 @@ const cards = [
       "Typeface wise, nothing much changed here. This doesn’t necessarily map to one of the highlights above, but it was the days where CSS 3 bells and whistles saw widespread adoption. Notably text and box shadows, border radius etc..and boy they were abused, everything had shadows and round corners.",
     styles: {
       container:
-        "border h-[385px] rounded-md [&:not(dark)]:shadow-lg shadow-neutral-200",
+        "border h-[410px] rounded-md [&:not(dark)]:shadow-lg shadow-neutral-200",
       image: "h-[220px] m-2.5 flex mb-3",
       title: "font-[arial] font-bold text-xl mb-2 px-4",
       description: "font-[arial] mb-2 px-4",
@@ -36,12 +60,11 @@ const cards = [
       "This one maps to the Google font beginning with the flattening of web and UI in general. Pioneered by the Apple’s move from skeuomorphism to flat design (and thin typeface at the start).",
     styles: {
       container:
-        "border h-[385px] rounded-md [&:not(dark)]:shadow-lg shadow-neutral-200",
+        "border h-[410px] rounded-md [&:not(dark)]:shadow-lg shadow-neutral-200",
       image: "h-[220px] m-2 flex mb-3 rounded [&_img]:rounded",
-      title: "font-['Open_Sans'] font-normal text-lg mb-2 px-4",
-      description: "font-['Open_Sans'] text-gray-500 mb-3 px-4",
-      button:
-        "py-1 px-3 rounded font-['Open_Sans'] ml-4 bg-blue-500 text-white",
+      title: `${open_sans.className} font-normal text-lg mb-2 px-4`,
+      description: `${open_sans.className} text-gray-500 mb-3 px-4`,
+      button: `py-1 px-3 rounded ${open_sans.className} ml-4 bg-blue-500 text-white`,
     },
   },
   {
@@ -49,12 +72,11 @@ const cards = [
       "This placement is a bit awkward, nothing special. I hesitated whether I should keep it or not, but I did so just to dedicate a place for a serif font.",
     styles: {
       container:
-        "shadow h-[385px] rounded [&:not(dark)]:shadow-lg shadow-neutral-200",
+        "shadow h-[410px] rounded [&:not(dark)]:shadow-lg shadow-neutral-200",
       image: "h-[220px] m-3 flex mb-3 rounded-xl [&_img]:rounded shadow",
-      title: "font-[bitter] font-bold text-xl mb-2 px-4",
-      description: "font-['Open_Sans'] text-gray-700 mb-3 px-4",
-      button:
-        "py-1 px-3 rounded-full font-['Open_Sans'] ml-4 border border-blue-500 text-blue-500",
+      title: `${bitter.className} font-bold text-xl mb-2 px-4`,
+      description: `${open_sans.className} text-gray-700 mb-3 px-4`,
+      button: `py-1 px-3 rounded-full ${open_sans.className} ml-4 border border-blue-500 text-blue-500`,
     },
   },
   {
@@ -62,7 +84,7 @@ const cards = [
       'Clearly this is the new system font era. Cleanliness could be the title of this period. Almost like this: <code>system-ui, -apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif</code> became the standard way to style fonts on the web.',
     styles: {
       container:
-        "border h-[385px] rounded-[12px] [&:not(dark)]:shadow-lg shadow-neutral-200",
+        "border h-[410px] rounded-[12px] [&:not(dark)]:shadow-lg shadow-neutral-200",
       image:
         "m-3 h-[210px] flex mb-3 [&_img]:rounded-[11px] [&_img]:rousnded-b-none",
       title: "font-[System-ui] font-bold text-xl mb-2 px-5",
@@ -76,14 +98,11 @@ const cards = [
       "The trend of clean and minimalist UI is reaching places these days few people saw coming. It’s for the best I’d like to say. I’m a fan and early adopter as well :)",
     styles: {
       container:
-        "border h-[385px] rounded-[8px] text-center [&:not(dark)]:shadow-lg shadow-neutral-200 flex flex-col p-4 hover:bg-neutral-50 cursor-pointer duration-500",
+        "border h-[410px] rounded-[8px] text-center [&:not(dark)]:shadow-lg shadow-neutral-200 flex flex-col p-4 hover:bg-neutral-50 cursor-pointer duration-500",
       image: "m-2 w-[100px] flex mb-3 [&_img]:rounded-[7px] self-center pt-7",
-      title:
-        "font-[Inter] font-bold text-[25px] tracking-tight mb-3 px-5 text-center bg-clip-text bg-gradient-to-b from-[#999] to-black text-fill-color-transparent",
-      description:
-        "font-['Space_Grotesk'] mb-6 px-5 text-base text-zinc-600 text-center",
-      button:
-        "py-2 px-5 rounded-full font-['Space_Grotesk'] font-normal bg-zinc-700 text-white w-fit self-center",
+      title: `${inter.className} font-bold text-[25px] tracking-tight mb-3 px-5 text-center bg-clip-text bg-gradient-to-b from-[#999] to-black text-fill-color-transparent`,
+      description: `${space_grotesk.className} mb-6 px-5 text-base text-zinc-600 text-center`,
+      button: `py-2 px-5 rounded-full ${space_grotesk.className} font-normal bg-zinc-700 text-white w-fit self-center`,
     },
   },
 ];
@@ -98,7 +117,7 @@ export default function FashionTimelineCard() {
     <>
       <div className="py-5 dark:text-neutral-900 dark:font-normal">
         <div className="flex justify-center">
-          <div className="h-[400px] w-[350px] relative">
+          <div className="h-[450px] w-[350px] relative">
             {cards.map((cardClass, i) => (
               <div
                 key={i}

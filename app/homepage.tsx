@@ -5,7 +5,7 @@ import CuteTile from "components/CuteTile";
 import Contact from "components/Contact";
 import Link from "next/link";
 import GreenEmojiFace from "components/GreenEmojiFace";
-import { Post } from "utils/types";
+import type { Post } from "utils/types";
 
 const LINK =
   "border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800 dark:hover:border-neutral-500 transition";
@@ -18,7 +18,7 @@ const Homepage = ({ posts }: { posts: Post[] }) => {
       <Themetoggler />
       <header className="mx-auto mb-10 flex justify-center">
         <div className="text-center font-['marydale'] font-[700] -rotate-2 uppercase text-4xl md:text-[55px] leading-none tracking-tight bg-clip-text- bg-gradient-to-t- from-[#aaa]- text-fill-color-transparent---">
-          A Hacker News
+          Frontend Sucks
         </div>
       </header>
 

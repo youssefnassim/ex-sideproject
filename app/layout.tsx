@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
-  title: "A Hacker News",
+  title: "Frontend Sucks",
 };
 
 const SmoothHaas = localFont({
@@ -34,10 +34,6 @@ export default function RootLayout({
       <head>
         <link rel="stylesheet" href="https://use.typekit.net/gyx7jcz.css" />
         <link rel="stylesheet" href="https://use.typekit.net/kpj8dex.css" />
-        <link
-          href="https://fonts.googleapis.com/css2?family=Rubik:wght@400;500&family=Source+Serif+Pro&display=swap"
-          rel="stylesheet"
-        />
       </head>
       <body
         className={`${SmoothHaas.className} antialiased bg-neutral-100/50 dark:bg-black text-neutral-800/80 dark:text-neutral-500`}
