@@ -5,7 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import localFont from "next/font/local";
 
 export const metadata: Metadata = {
-  title: "Frontend Sucks",
+  title: "Ex Side Project",
 };
 
 const SmoothHaas = localFont({

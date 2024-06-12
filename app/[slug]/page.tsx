@@ -57,7 +57,7 @@ export async function generateMetadata({ params: { slug } }: PostPageProps) {
   const post = await getPost(slug);
 
   return {
-    title: `Frontend Sucks - ${post.frontmatter.title}`,
+    title: `Ex Side Project - ${post.frontmatter.title}`,
   };
 }
 

@@ -14,11 +14,11 @@ const PICTOGRAM =
 
 const Homepage = ({ posts }: { posts: Post[] }) => {
   return (
-    <div className="py-20">
+    <div className="py-10">
       <Themetoggler />
-      <header className="mx-auto mb-10 flex justify-center">
-        <div className="text-center font-['marydale'] font-[700] -rotate-2 uppercase text-4xl md:text-[55px] leading-none tracking-tight bg-clip-text- bg-gradient-to-t- from-[#aaa]- text-fill-color-transparent---">
-          Frontend Sucks
+      <header className="mx-auto mb-14 flex justify-center">
+        <div className="text-center font-['marydale'] font-[700] -rotate-2 uppercase text-4xl md:text-[30px] leading-none tracking-tight bg-clip-text- bg-gradient-to-t- from-[#aaa]- text-fill-color-transparent---">
+          Ex Side Project
         </div>
       </header>
 
@@ -38,24 +38,27 @@ const Homepage = ({ posts }: { posts: Post[] }) => {
           <Contact />
         </h2>
         <h2 className="uppercase text-xl md:text-2xl font-bold">
-          <Link legacyBehavior href="https://twitter.com/youssef_nassim">
-            <a className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800/80 dark:hover:border-neutral-500 transition">
-              Twitter
-            </a>
+          <Link
+            href="https://twitter.com/youssef_nassim"
+            className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800/80 dark:hover:border-neutral-500 transition"
+          >
+            Twitter
           </Link>
         </h2>
         <h2 className="uppercase text-xl md:text-2xl font-bold">
-          <Link legacyBehavior href="https://twitter.com/youssef_nassim">
-            <a className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800/80 dark:hover:border-neutral-500 transition">
-              Github
-            </a>
+          <Link
+            href="https://github.com/youssefnassim"
+            className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800/80 dark:hover:border-neutral-500 transition"
+          >
+            Github
           </Link>
         </h2>
         <h2 className="uppercase text-xl md:text-2xl font-bold">
-          <Link legacyBehavior href="/newsletter">
-            <a className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800/80 dark:hover:border-neutral-500 transition">
-              Newsletter
-            </a>
+          <Link
+            href="/newsletter"
+            className="border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800/80 dark:hover:border-neutral-500 transition"
+          >
+            Newsletter
           </Link>
         </h2>
       </main>
