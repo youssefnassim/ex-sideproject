@@ -2,26 +2,43 @@ import { Metadata } from "next";
 import "../styles/globals.css";
 import { ThemeProvider } from "next-themes";
 import { Analytics } from "@vercel/analytics/react";
-import localFont from "next/font/local";
+import {
+  Inter,
+  Newsreader,
+  Space_Mono,
+  Staatliches,
+  Fragment_Mono,
+} from "next/font/google";
+import classNames from "classnames";
 
 export const metadata: Metadata = {
   title: "Ex Side Project",
 };
 
-const SmoothHaas = localFont({
-  src: [
-    {
-      path: "../fonts/SmoothHaas-Regular.ttf",
-      weight: "400",
-      style: "normal",
-    },
-    {
-      path: "../fonts/SmoothHaas-Bold.ttf",
-      weight: "700",
-      style: "normal",
-    },
-  ],
-  variable: "--font-smoothhaas",
+const newsreader = Newsreader({
+  subsets: ["latin"],
+  variable: "--font-newsreader",
+  display: "swap",
+});
+
+const inter = Inter({
+  subsets: ["latin"],
+  variable: "--font-inter",
+  display: "swap",
+});
+
+const spaceMono = Fragment_Mono({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-space-mono",
+  display: "swap",
+});
+
+const staatliches = Staatliches({
+  subsets: ["latin"],
+  weight: ["400"],
+  variable: "--font-display",
+  display: "swap",
 });
 
 export default function RootLayout({
@@ -31,14 +48,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en" suppressHydrationWarning>
-      <head>
-        <link rel="stylesheet" href="https://use.typekit.net/gyx7jcz.css" />
-        <link rel="stylesheet" href="https://use.typekit.net/kpj8dex.css" />
-      </head>
       <body
-        className={`${SmoothHaas.className} antialiased bg-neutral-100/50 dark:bg-black text-neutral-800/80 dark:text-neutral-500`}
+        className={classNames(
+          "h-full font-serif antialiased dark:bg-black text-neutral-800 dark:text-neutral-500",
+          newsreader.variable,
+          inter.variable,
+          spaceMono.variable,
+          staatliches.variable
+        )}
       >
-        <ThemeProvider attribute="class">{children}</ThemeProvider>
+        {children}
+        {/* <ThemeProvider attribute="class"></ThemeProvider> */}
       </body>
     </html>
   );

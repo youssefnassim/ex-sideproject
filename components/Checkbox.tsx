@@ -1,13 +1,15 @@
 import React, { ChangeEvent } from "react";
 import FilterFrame from "../public/filter-frame.svg";
+import classNames from "classnames";
 
 type CheckboxProps = {
   name: string;
-  label?: string;
+  label?: string | React.ReactNode;
   color?: string;
   checked: boolean;
   disabled?: boolean;
   onChange: (event: ChangeEvent<HTMLInputElement>) => void;
+  className?: string;
 };
 
 const filterFrameSize = (tagName: string) => {
@@ -28,6 +30,7 @@ function Checkbox({
   color,
   checked,
   disabled,
+  className,
 }: CheckboxProps) {
   const sizeClass = sizes[filterFrameSize(name)];
 
@@ -50,9 +53,12 @@ function Checkbox({
         )}
         <label
           htmlFor={name}
-          className={`uppercsase select-none hover:cursor-pointer md:leading-10 ${
-            disabled && "opacity-20 dark:opacity-30"
-          } transition-all ${color}`}
+          className={classNames(
+            "uppercsase select-none hover:cursor-pointer md:leading-10 transition-all",
+            { "opacity-20 dark:opacity-30": disabled },
+            className,
+            color
+          )}
         >
           {label || name}
         </label>

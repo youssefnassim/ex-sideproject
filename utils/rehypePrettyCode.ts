@@ -1,15 +1,15 @@
 import { type Options } from "rehype-pretty-code";
 import { visit } from "unist-util-visit";
 
-const WRAPPER_DIV = "rounded-lg bg-[#0E1116] my-5";
-const TITLE = "rounded-lg px-5 py-2 font-mono text-[#C9D1D9] bg-[#171B21]";
-const PRE = "py-4 overflow-x-auto leading-7";
+const WRAPPER_DIV = "rounded-lg bg-gray-100 my-5";
+const TITLE = "rounded-lg px-5 py-2 font-mono text-neutral-500";
+const PRE = "py-4 overflow-x-auto leading-7 text-base";
 const CODE =
   "grid [&>span]:border-l-4 [&>span]:border-l-transparent [&>span]:pl-3 [&>span]:pr-5";
 // const LINE = "px-5";
 const NUMBERED_LINE =
-  "[counter-reset:line] before:[&>span]:mr-5 before:[&>span]:inline-block before:[&>span]:w-4 before:[&>span]:text-right before:[&>span]:text-white/20 before:[&>span]:![content:counter(line)] before:[&>span]:[counter-increment:line]";
-const HIGHLIGHTED_LINE = "!border-[#31363C] bg-[#171B21] before:!text-white/70";
+  "[counter-reset:line] before:[&>span]:mr-5 before:[&>span]:inline-block before:[&>span]:w-4 before:[&>span]:text-right before:[&>span]:text-gray-300 before:[&>span]:![content:counter(line)] before:[&>span]:[counter-increment:line]";
+const HIGHLIGHTED_LINE = "!border-gray-400 bg-gray-200 before:!text-gray-500";
 
 export function rehypePrettyCodeStyles() {
   return (tree: any) => {
@@ -64,7 +64,7 @@ export function rehypePrettyCodeStyles() {
 
 export const options: Partial<Options> = {
   // Use one of Shiki's packaged themes
-  theme: "github-dark",
+  theme: "github-light",
   onVisitLine(node) {
     // Prevent lines from collapsing in `display: grid` mode, and
     // allow empty lines to be copy/pasted

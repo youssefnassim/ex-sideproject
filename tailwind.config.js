@@ -10,21 +10,13 @@ module.exports = {
   theme: {
     extend: {
       fontSize: {
-        "2xl": ["1.4rem", "1.5"],
+        // "2xl": ["1.4rem", "1.5"],
       },
       fontFamily: {
-        sans: [
-          "Rubik",
-          "neue-haas-grotesk-text",
-          "-apple-system",
-          "BlinkMacSystemFont",
-          "Segoe UI",
-          "Roboto",
-          "Oxygen",
-          "Ubuntu",
-          "Cantarell",
-          "sans-serif",
-        ],
+        sans: ["var(--font-inter)"],
+        serif: ["var(--font-newsreader)"],
+        mono: ["var(--font-space-mono)"],
+        display: ["var(--font-display)"],
       },
       animation: {
         rotation: "rotation 30s linear infinite",

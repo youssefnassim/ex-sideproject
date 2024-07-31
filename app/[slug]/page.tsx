@@ -75,18 +75,18 @@ export default async function PostPage({ params: { slug } }: PostPageProps) {
           </a>
         </Link>
       </div>
-      <article className="py-16 px-4 md:px-10 max-w-[850px] lg:w-3/5md:w-2/3 mx-auto">
-        <h1 className="uppercase text-[1.7rem] font-bold mb-6 text-center">
+      <article className="py-16 px-4 md:px-10 max-w-[750px] lg:w-3/5md:w-2/3 mx-auto">
+        <h1 className="text-3xl font-bold mb-6 text-center">
           {frontmatter.title}
         </h1>
-        <p className="uppercase fonts-['system-ui'] text-xl font-bold mb-8 text-center">
+        <p className="fonts-['system-ui'] text-xl font-bold mb-8 text-center">
           <time dateTime={format(publishedAt, "y-MM-dd")}>
             {format(publishedAt, "d LLLL y")}
             {` — ${frontmatter.readingTime} min read`}
           </time>
         </p>
         {frontmatter.tags && (
-          <p className="uppercase fonts-['system-ui'] text-xl font-bold mb-8 text-center hidden">
+          <p className="fonts-['system-ui'] text-xl font-bold mb-8 text-center hidden">
             Tagged in:{" "}
             {frontmatter.tags.map(
               (tag, i) =>
@@ -94,7 +94,7 @@ export default async function PostPage({ params: { slug } }: PostPageProps) {
             )}
           </p>
         )}
-        <div className="[&>p]:indent-5 [&>p]:mb-6 [&>p]:fonts-['Source_Serif_Pro'] [&>p]:font-bold dark:text-inherit text-base md:text-lgs">
+        <div className="[&>p]:indent-7 [&>p]:mbs-4 [&>p]:fonts-['Source_Serif_Pro'] [&>p]:font-semibolds dark:text-inherit text-lg font-medium leading-6 md:text-lgs">
           {content}
         </div>
       </article>

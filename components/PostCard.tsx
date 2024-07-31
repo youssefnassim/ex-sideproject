@@ -1,32 +1,48 @@
 import Link from "next/link";
 import { PostMeta } from "../utils/types";
 import { format } from "date-fns";
+import { HomeListItemLayout } from "./HomeListItemLayout";
+import classNames from "classnames";
+
+type PostCardProps = {
+  meta: PostMeta;
+  slug: string;
+  tagSelected?: boolean;
+};
 
 export default function PostCard({
-  title,
+  meta: { title, styledTitle, publishedAt, excerpt },
   slug,
-  tagSelected = false,
-  ...rest
-}: PostMeta & { slug: string; tagSelected: boolean }) {
-  const publishedAt = new Date(rest.publishedAt);
+  tagSelected,
+}: PostCardProps) {
   return (
-    <h2 className="uppercase text-xl md:text-2xl font-bold mb-4 md:mb-3">
-      <Link legacyBehavior href={slug}>
-        <a
-          className={`transition border-b-4 border-transparent hover:border-b-4 hover:border-neutral-800/80 dark:hover:border-neutral-500 ${
-            tagSelected ? "shadow-[inset_0_-17px_0_#71FA4C]" : ""
-          }`}
+    <HomeListItemLayout leftCol={format(new Date(publishedAt), "yy/MM/dd")}>
+      <div className="text-2xl md:text-3xl font-esxtrabold">
+        <Link
+          href={slug}
+          className={classNames({
+            "line-through decoration-8":
+              tagSelected !== undefined && !tagSelected,
+          })}
         >
-          {/* <time
-            dateTime={format(publishedAt, "y-MM-dd")}
-            className="text-lg fosnt-['marydale'] font-sblack"
-          >
-            {format(publishedAt, "d/LL/Y")}
-          </time> */}
-          {/* <br /> */}
-          <span className="">{title}</span>
-        </a>
-      </Link>
-    </h2>
+          {styledTitle
+            ? styledTitle.split("|").map((wordWithClasses) => {
+                const [word, classes = undefined] = wordWithClasses.split("::");
+                return (
+                  <span
+                    key={`${slug}-${word}`}
+                    className={classNames(classes?.trim())}
+                  >
+                    {word}{" "}
+                  </span>
+                );
+              })
+            : title}
+        </Link>
+        <p className="hidden mt-5 font-monos tracking-tights leading-snug max-w-2xl mb-10">
+          {excerpt}
+        </p>
+      </div>
+    </HomeListItemLayout>
   );
 }

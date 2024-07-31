@@ -1,5 +1,6 @@
 export type PostMeta = {
   title: string;
+  styledTitle?: string;
   excerpt: string;
   publishedAt: string;
   updatedAt: string;
@@ -10,7 +11,7 @@ export type PostMeta = {
 };
 
 export type Post = {
-  frontMatter: PostMeta;
+  meta: PostMeta;
   slug: string;
-  tagSelected: boolean;
+  tagSelected?: boolean;
 };
