@@ -1,6 +1,5 @@
 import classNames from "classnames";
 import { type PropsWithChildren } from "react";
-import { Post } from "utils/types";
 
 type HomeListItemLayoutProps = PropsWithChildren<{
   leftCol: string;
@@ -13,11 +12,15 @@ export function HomeListItemLayout({
   children,
 }: HomeListItemLayoutProps) {
   return (
-    <li className="flex flex-col md:flex-row">
-      <span className="font-mono font-medium text-lg w-36 shrink-0">
+    <li className="flex flex-col md:flex-row first:border-none border-t-[0px] border-neutral-200 border-dosted">
+      <span className="font-mono font-mediums text-sm text-neutral-400 w-32 shrink-0">
         {leftCol}
       </span>
-      <div className={classNames("flex-grow", { "lg:mr-36": centered })}>
+      <div
+        className={classNames("flex-grow", {
+          "lg:mr-36": centered,
+        })}
+      >
         {children}
       </div>
     </li>

@@ -2,26 +2,35 @@
 
 import { useTheme } from "next-themes";
 import { useEffect, useState } from "react";
-import Moon from "../public/moon.svg";
-import Sun from "../public/sun.svg";
+import classNames from "classnames";
 
-export default function Themetoggler() {
+type ThemeTogglerProps = {
+  className?: string;
+};
+
+export default function ThemeToggler({ className }: ThemeTogglerProps) {
   const { resolvedTheme, setTheme } = useTheme();
-  const [mounted, setMounted] = useState(false);
-
-  useEffect(() => setMounted(true), []);
 
   return (
     <div
-      className="fixed top-4 right-4 cursor-pointer"
+      className={classNames("hover:cursor-pointer", className)}
       onClick={() => setTheme(resolvedTheme === "dark" ? "light" : "dark")}
     >
-      {mounted &&
-        (resolvedTheme === "dark" ? (
-          <Moon className="w-6 stroke-2 stroke-white" />
-        ) : (
-          <Sun className="w-6 stroke-2" />
-        ))}
+      <div
+        className={classNames(
+          "flex items-center justify-center h-[18px] w-[18px] border border-dashed border-neutral-600 rounded-full",
+          { "border-none": resolvedTheme === "dark" }
+        )}
+      >
+        <div
+          className={classNames(
+            "h-[14px] w-[14px] rounded-full border border-neutral-600",
+            {
+              "border-none bg-neutral-400": resolvedTheme === "dark",
+            }
+          )}
+        />
+      </div>
     </div>
   );
 }

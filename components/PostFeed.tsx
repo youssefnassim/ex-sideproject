@@ -23,7 +23,7 @@ const tags = [
     className: "font-sans font-light tracking-tight",
     customLabel: (
       <>
-        <span className="font-bold">Type</span>Script
+        <span className="font-bolds">Type</span>Script
       </>
     ),
   },
@@ -70,24 +70,21 @@ export default function FilterablePostFeed({
         );
 
   return (
-    <ul className="space-y-16 md:space-y-20">
+    <ul className="space-y-6 md:space-y-8">
       {filterable && (
         <HomeListItemLayout leftCol="FILTER:">
-          <div className="flex flex-wrap items-baseline gap-2 md:w-[600px]">
-            {tags.map((tag, i) => (
-              <div
-                key={tag.name}
-                className="after:content-[','] last:after:content-none after:text-3xl"
-              >
-                <Checkbox
-                  {...register(tag.name)}
-                  disabled={!leftPossibleTags.includes(tag.name)}
-                  className={classNames("text-2xl md:text-3xl", tag.className)}
-                  label={tag.customLabel}
-                />
-              </div>
-            ))}
-          </div>
+          {tags.map((tag, i) => (
+            <Checkbox
+              key={tag.name}
+              {...register(tag.name)}
+              disabled={!leftPossibleTags.includes(tag.name)}
+              className={classNames(
+                "text-xl md:text-xl font-monos font-mediums tracking-tights md:text-3xls after:content-[','] last:after:content-none after:mr-1 after:text-lg",
+                false && tag.className
+              )}
+              label={tag.customLabel}
+            />
+          ))}
         </HomeListItemLayout>
       )}
       {postsTaggified.map((post, i) => {

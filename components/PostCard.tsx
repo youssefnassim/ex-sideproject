@@ -17,31 +17,29 @@ export default function PostCard({
 }: PostCardProps) {
   return (
     <HomeListItemLayout leftCol={format(new Date(publishedAt), "yy/MM/dd")}>
-      <div className="text-2xl md:text-3xl font-esxtrabold">
+      <div className="text-xl md:text-3xls font-mediums max-w-xl">
         <Link
           href={slug}
-          className={classNames({
-            "line-through decoration-8":
+          className={classNames("hover:underline", {
+            "line-through decoration-8 hover:line-through":
               tagSelected !== undefined && !tagSelected,
           })}
         >
-          {styledTitle
-            ? styledTitle.split("|").map((wordWithClasses) => {
-                const [word, classes = undefined] = wordWithClasses.split("::");
-                return (
-                  <span
-                    key={`${slug}-${word}`}
-                    className={classNames(classes?.trim())}
-                  >
-                    {word}{" "}
-                  </span>
-                );
-              })
-            : title}
+          <h2 className="font-bold">{title}</h2>
+          {excerpt && (
+            <p
+              className={classNames(
+                "hiddens font-monos text-xl mt-1S text-xss text-neutrsal-400 font-mediums tracking-tights leading-snug max-w-2xl mb-1",
+                {
+                  "line-through decoration-8 hover:line-through":
+                    tagSelected !== undefined && !tagSelected,
+                }
+              )}
+            >
+              {excerpt}
+            </p>
+          )}
         </Link>
-        <p className="hidden mt-5 font-monos tracking-tights leading-snug max-w-2xl mb-10">
-          {excerpt}
-        </p>
       </div>
     </HomeListItemLayout>
   );

@@ -1,26 +1,20 @@
 import type { Post } from "utils/types";
-import classNames from "classnames";
-
 import PostFeed from "components/PostFeed";
-import { HomeListItemLayout } from "components/HomeListItemLayout";
 import { Newsletter } from "components/Newsletter";
+import { Schoolbell } from "next/font/google";
+import Header from "components/Header";
+
+const logoFont = Schoolbell({
+  subsets: ["latin"],
+  weight: ["400"],
+  display: "swap",
+});
 
 const Homepage = ({ posts }: { posts: Post[] }) => {
   return (
-    <div>
-      <header className="mb-10 md:mb-20">
-        <ul
-          className={classNames(
-            "flex justify-between py-7 px-5 md:px-10 text-3xl"
-          )}
-        >
-          <li>
-            <div className="">Ex Side Project</div>
-          </li>
-          <li className="hidden md:block">Mail/Twitter</li>
-        </ul>
-      </header>
-      <main className="px-5 md:px-10 pt-10 pb-20">
+    <div className="py-7 px-4 md:px-10">
+      <Header />
+      <main className="">
         <PostFeed
           posts={posts}
           insertAt={{

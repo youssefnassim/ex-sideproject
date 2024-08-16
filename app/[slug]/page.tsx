@@ -11,6 +11,7 @@ import ArrowBack from "../../public/arrow-back.svg";
 import Link from "next/link";
 import { HEADING_ANCHOR } from "utils/constants";
 import { components } from "components/MdxComponents";
+import Header from "components/Header";
 
 type PostPageProps = {
   params: Awaited<ReturnType<typeof generateStaticParams>>[number];
@@ -66,39 +67,38 @@ export default async function PostPage({ params: { slug } }: PostPageProps) {
   const publishedAt = new Date(frontmatter.publishedAt);
 
   return (
-    <main className="mt-2 mb-8">
-      <div className="w-[100px] top-2.5 left-2.5 fixed hidden">
-        <Link legacyBehavior href="/">
-          <a className="flex font-['marydale'] uppercase font-bold text-xl">
-            <ArrowBack className="dark:[&>g>path]:stroke-neutral-500" />
-            Index
-          </a>
-        </Link>
-      </div>
-      <article className="py-16 px-4 md:px-10 max-w-[750px] lg:w-3/5md:w-2/3 mx-auto">
-        <h1 className="text-3xl font-bold mb-6 text-center">
-          {frontmatter.title}
-        </h1>
-        <p className="fonts-['system-ui'] text-xl font-bold mb-8 text-center">
-          <time dateTime={format(publishedAt, "y-MM-dd")}>
-            {format(publishedAt, "d LLLL y")}
-            {` — ${frontmatter.readingTime} min read`}
-          </time>
-        </p>
-        {frontmatter.tags && (
-          <p className="fonts-['system-ui'] text-xl font-bold mb-8 text-center hidden">
-            Tagged in:{" "}
-            {frontmatter.tags.map(
-              (tag, i) =>
-                `${tag}${i + 1 !== frontmatter.tags?.length ? ", " : ""}`
-            )}
-          </p>
-        )}
-        <div className="[&>p]:indent-7 [&>p]:mbs-4 [&>p]:fonts-['Source_Serif_Pro'] [&>p]:font-semibolds dark:text-inherit text-lg font-medium leading-6 md:text-lgs">
-          {content}
-        </div>
-      </article>
-    </main>
+    <div className="py-7 px-4 md:px-10">
+      <Header />
+      <main className="">
+        <article className="flex flex-col md:flex-row">
+          <div className="md:w-1/6 shrink-0">
+            <h1 className="text-3xl md:text-xl font-bold">
+              {frontmatter.title}
+            </h1>
+            <p className="fonts-['system-ui'] text-lg md:text-base italics mt-1 mb-8">
+              <time dateTime={format(publishedAt, "y-MM-dd")}>
+                {format(publishedAt, "LLL d, y")}
+                {` — ${frontmatter.readingTime} min read`}
+              </time>
+            </p>
+          </div>
+          <div className="md:w-4/6">
+            <div className="max-w-[650px] mx-auto [&>p]:indent-7s [&>p]:mb-5 [&>p]:fonts-['Source_Serif_Pro'] [&>p]:font-semibolds last:[&>p]:after:content-none [&>p]:after:content-['***']s [&>p]:after:block [&>p]:after:text-center [&>p]:afters:py-5 dark:text-inherit font-serif font-medium text-xl leading-7s">
+              {content}
+              {frontmatter.tags && (
+                <p className="fonts-['system-ui'] text-xl font-bold mb-8 text-center hidden">
+                  Tagged in:{" "}
+                  {frontmatter.tags.map(
+                    (tag, i) =>
+                      `${tag}${i + 1 !== frontmatter.tags?.length ? ", " : ""}`
+                  )}
+                </p>
+              )}
+            </div>
+          </div>
+        </article>
+      </main>
+    </div>
   );
 }
 
