@@ -12,16 +12,23 @@ import Link from "next/link";
 import { HEADING_ANCHOR } from "utils/constants";
 import { components } from "components/MdxComponents";
 import Header from "components/Header";
+import { notFound } from "next/navigation";
 
 type PostPageProps = {
   params: Awaited<ReturnType<typeof generateStaticParams>>[number];
 };
 
 async function getPost(slug: string) {
-  const source = fs.readFileSync(
-    path.join("content/posts", slug + ".mdx"),
-    "utf-8"
-  );
+  let source: string | null;
+
+  try {
+    source = fs.readFileSync(
+      path.join("content/posts", slug + ".mdx"),
+      "utf-8"
+    );
+  } catch (error) {
+    return null;
+  }
 
   const { frontmatter, content } = await compileMDX<PostMeta>({
     source,
@@ -58,21 +65,30 @@ export async function generateMetadata({ params: { slug } }: PostPageProps) {
   const post = await getPost(slug);
 
   return {
-    title: `Ex Side Project - ${post.frontmatter.title}`,
+    title: post
+      ? `Ex Side Project - ${post.frontmatter.title}`
+      : "404 Not Found",
   };
 }
 
 export default async function PostPage({ params: { slug } }: PostPageProps) {
-  const { frontmatter, content } = await getPost(slug);
+  const post = await getPost(slug);
+
+  if (!post) {
+    notFound();
+  }
+
+  const { content, frontmatter } = post;
+
   const publishedAt = new Date(frontmatter.publishedAt);
 
   return (
     <div className="py-7 px-4 md:px-10">
       <Header />
       <main className="">
-        <article className="flex flex-col md:flex-row">
-          <div className="md:w-1/6 shrink-0">
-            <h1 className="text-3xl md:text-xl font-bold">
+        <article className="flex flex-col xl:flex-row">
+          <div className="xl:w-1/6 shrink-0">
+            <h1 className="text-3xl xl:text-xl font-bold">
               {frontmatter.title}
             </h1>
             <p className="fonts-['system-ui'] text-lg md:text-base italics mt-1 mb-8">
@@ -82,8 +98,8 @@ export default async function PostPage({ params: { slug } }: PostPageProps) {
               </time>
             </p>
           </div>
-          <div className="md:w-4/6">
-            <div className="max-w-[650px] mx-auto [&>p]:indent-7s [&>p]:mb-5 [&>p]:fonts-['Source_Serif_Pro'] [&>p]:font-semibolds last:[&>p]:after:content-none [&>p]:after:content-['***']s [&>p]:after:block [&>p]:after:text-center [&>p]:afters:py-5 dark:text-inherit font-serif font-medium text-xl leading-7s">
+          <div className="xl:w-4/6">
+            <div className="max-w-[650px] mx-auto [&>p]:indent-7s [&>p]:mb-5 [&>p]:fonts-['Source_Serif_Pro'] [&>p]:font-semibolds last:[&>p]:after:content-none [&>p]:after:content-['***']s [&>p]:after:block [&>p]:after:text-center [&>p]:afters:py-5 [&>hr]:mt-3 break-words dark:text-inherit font-serif font-medium text-xl leading-7s">
               {content}
               {frontmatter.tags && (
                 <p className="fonts-['system-ui'] text-xl font-bold mb-8 text-center hidden">

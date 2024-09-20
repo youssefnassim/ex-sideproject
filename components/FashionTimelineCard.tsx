@@ -37,7 +37,7 @@ const cards = [
       container: "border h-[410px] [&:not(dark)]:shadow-lg shadow-neutral-200",
       image: "border h-[220px] p-1 m-3 flex mb-4",
       title: "font-[georgia] text-lg mb-2 px-3",
-      description: "font-[verdana] mb-2 text-[13px] px-3",
+      description: "font-[verdana] mb-5 text-sm px-3",
       button:
         "py-0.5 px-2 ml-3 text-[13px] font-[verdana] bg-[#bbb] border-[3px] border-t-[#f2f2f2] border-l-[#f2f2f2] border-b-[#b2b2b2] border-r-[#b2b2b2] active:border-b-[#f2f2f2] active:border-r-[#f2f2f2] active:border-t-[#b2b2b2] active:border-l-[#b2b2b2]",
     },
@@ -50,9 +50,9 @@ const cards = [
         "border h-[410px] rounded-md [&:not(dark)]:shadow-lg shadow-neutral-200",
       image: "h-[220px] m-2.5 flex mb-3",
       title: "font-[arial] font-bold text-xl mb-2 px-4",
-      description: "font-[arial] mb-2 px-4",
+      description: "font-[arial] text-base mb-5 px-4",
       button:
-        "second-btn py-1 px-3 rounded font-[arial] ml-4 text-white bg-gradient-to-b from-[#0088cc] to-[#0044cc] hover:bg-[#0044cc]",
+        "second-btn py-1 px-3 rounded text-base font-[arial] ml-4 text-white bg-gradient-to-b from-[#0088cc] to-[#0044cc] hover:bg-[#0044cc]",
     },
   },
   {
@@ -63,7 +63,7 @@ const cards = [
         "border h-[410px] rounded-md [&:not(dark)]:shadow-lg shadow-neutral-200",
       image: "h-[220px] m-2 flex mb-3 rounded [&_img]:rounded",
       title: `${open_sans.className} font-normal text-lg mb-2 px-4`,
-      description: `${open_sans.className} text-gray-500 mb-3 px-4`,
+      description: `${open_sans.className} text-base text-gray-500 mb-3 px-4`,
       button: `py-1 px-3 rounded ${open_sans.className} ml-4 bg-blue-500 text-white`,
     },
   },
@@ -72,10 +72,10 @@ const cards = [
       "This placement is a bit awkward, nothing special. I hesitated whether I should keep it or not, but I did so just to dedicate a place for a serif font.",
     styles: {
       container:
-        "shadow h-[410px] rounded [&:not(dark)]:shadow-lg shadow-neutral-200",
+        "shadow h-[430px] md:h-[410px] rounded [&:not(dark)]:shadow-lg shadow-neutral-200",
       image: "h-[220px] m-3 flex mb-3 rounded-xl [&_img]:rounded shadow",
       title: `${bitter.className} font-bold text-xl mb-2 px-4`,
-      description: `${open_sans.className} text-gray-700 mb-3 px-4`,
+      description: `${open_sans.className} text-gray-700 mb-5 px-4`,
       button: `py-1 px-3 rounded-full ${open_sans.className} ml-4 border border-blue-500 text-blue-500`,
     },
   },
@@ -115,7 +115,7 @@ export default function FashionTimelineCard() {
 
   return (
     <>
-      <div className="py-5 dark:text-neutral-900 dark:font-normal">
+      <div className="py-5 dark:text-neutral-900 dark:font-normal text-base">
         <div className="flex justify-center">
           <div className="h-[450px] w-[350px] relative">
             {cards.map((cardClass, i) => (
@@ -153,7 +153,7 @@ export default function FashionTimelineCard() {
               <button
                 key={index}
                 onClick={() => setUpfrontCard(index)}
-                className={`mr-2 -mt-[0px] bg-white border text-base font-bold inline-block w-[35px] h-[35px] rounded-full relative ${
+                className={`mr-2 -mt-[0px] bg-white border text-base font-mono inline-block w-[35px] h-[35px] rounded-full relative ${
                   upfrontCard === index ? CARDS_PAGER_SELECTED_CARDS : ""
                 }`}
               >

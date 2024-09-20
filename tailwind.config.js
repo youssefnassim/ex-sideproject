@@ -19,6 +19,7 @@ module.exports = {
       animation: {
         rotation: "rotation 30s linear infinite",
         "3D-Y-rotation": "3D-Y-rotation 10s linear infinite",
+        blink: "blink 1s steps(2, start) infinite",
       },
       keyframes: {
         rotation: {
@@ -28,6 +29,11 @@ module.exports = {
         "3D-Y-rotation": {
           "0%": { transform: "rotateY(0deg)" },
           "100%": { transform: "rotateY(360deg)" },
+        },
+        blink: {
+          to: {
+            visibility: "hidden",
+          },
         },
       },
     },

@@ -12,23 +12,23 @@ export const components = {
     />
   ),
   h1: (props: any) => (
-    <h1 className="text-centers text-3xl font-bold mt-10 mb-4" {...props} />
+    <h1 className="text-centers text-2xl font-bold mt-10 mb-4" {...props} />
   ),
   h2: (props: any) => (
     <h2
-      className="text-centers relative text-2xl font-bold mt-10 mb-6"
+      className="text-centers relative text-xl font-bold mt-10 mb-6"
       {...props}
     />
   ),
   h3: (props: any) => (
     <h3
-      className="text-centers relative text-base font-bold mt-4 mb-4"
+      className="text-centers relative text-lg font-bold mt-4 mb-4"
       {...props}
     />
   ),
   h4: (props: any) => (
     <h4
-      className="text-centers relative text-sm font-bold mt-4 mb-4"
+      className="text-centers relative text-base font-bold mt-4 mb-4"
       {...props}
     />
   ),
@@ -44,8 +44,12 @@ export const components = {
       {...props}
     />
   ),
-  ul: (props: any) => <ul className="list-disc space-y-1 pl-8" {...props} />,
-  ol: (props: any) => <ol className="list-decimal space-y-1 pl-8" {...props} />,
+  ul: (props: any) => (
+    <ul className="list-disc space-y-1 pl-8 text-xl" {...props} />
+  ),
+  ol: (props: any) => (
+    <ol className="list-decimal space-y-1 pl-8 text-xl" {...props} />
+  ),
   blockquote: (props: any) => (
     <blockquote className="pl-6 text-xl italic" {...props} />
   ),

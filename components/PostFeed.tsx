@@ -79,7 +79,7 @@ export default function FilterablePostFeed({
               {...register(tag.name)}
               disabled={!leftPossibleTags.includes(tag.name)}
               className={classNames(
-                "text-xl md:text-xl font-monos font-mediums tracking-tights md:text-3xls after:content-[','] last:after:content-none after:mr-1 after:text-lg",
+                "text-xl md:text-3xls after:content-[','] last:after:content-none after:mr-1",
                 false && tag.className
               )}
               label={tag.customLabel}

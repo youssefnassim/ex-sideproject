@@ -10,16 +10,32 @@ type MenuContext = "PAGES" | "SOCIAL" | "N/A";
 const menu: Partial<Record<MenuContext, React.ReactNode>> = {
   PAGES: (
     <ul className="font-mono uppercase text-neutral-400 text-sm space-y-1">
-      <li>Home</li>
-      <li>About</li>
-      <li>Projects</li>
+      <li>
+        <Link href="/">Home</Link>
+      </li>
+      <li>
+        <Link href="/about">About</Link>
+      </li>
+      <li>
+        <Link href="/projects">Projects</Link>
+      </li>
     </ul>
   ),
   SOCIAL: (
     <ul className="font-mono uppercase text-neutral-400 text-sm space-y-1">
-      <li>Mail</li>
-      <li>Twitter</li>
-      <li>Github</li>
+      <li>
+        <a href="mailto:hi@youssefnassim.com">Mail</a>
+      </li>
+      <li>
+        <Link href="https://x.com/youssef_nassim" target="_blank">
+          Twitter
+        </Link>
+      </li>
+      <li>
+        <Link href="https://github.com/youssefnassim" target="_blank">
+          Github
+        </Link>
+      </li>
     </ul>
   ),
 };

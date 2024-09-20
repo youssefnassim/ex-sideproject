@@ -11,7 +11,7 @@ type PostCardProps = {
 };
 
 export default function PostCard({
-  meta: { title, styledTitle, publishedAt, excerpt },
+  meta: { title, publishedAt, excerpt },
   slug,
   tagSelected,
 }: PostCardProps) {
@@ -25,7 +25,7 @@ export default function PostCard({
               tagSelected !== undefined && !tagSelected,
           })}
         >
-          <h2 className="font-bold">{title}</h2>
+          <h2 className="font-bold decoration-8">{title}</h2>
           {excerpt && (
             <p
               className={classNames(
