@@ -3,7 +3,7 @@ import { visit } from "unist-util-visit";
 
 const WRAPPER_DIV = "rounded-lg bg-gray-100 my-5";
 const TITLE = "rounded-lg px-5 py-2 text-base font-mono text-neutral-500";
-const PRE = "py-4 overflow-x-auto leading-7 text-base";
+const PRE = "py-4 overflow-x-auto leading-7";
 const CODE =
   "grid [&>span]:border-l-4 [&>span]:border-l-transparent [&>span]:pl-3 [&>span]:pr-5";
 // const LINE = "px-5";

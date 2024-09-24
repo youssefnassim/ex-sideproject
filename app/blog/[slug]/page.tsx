@@ -7,11 +7,8 @@ import rehypePrettyCode from "rehype-pretty-code";
 import { options, rehypePrettyCodeStyles } from "utils/rehypePrettyCode";
 import rehypeAutolinkHeadings from "rehype-autolink-headings";
 import rehypeSlug from "rehype-slug";
-import ArrowBack from "../../public/arrow-back.svg";
-import Link from "next/link";
 import { HEADING_ANCHOR } from "utils/constants";
 import { components } from "components/MdxComponents";
-import Header from "components/Header";
 import { notFound } from "next/navigation";
 
 type PostPageProps = {
@@ -83,38 +80,31 @@ export default async function PostPage({ params: { slug } }: PostPageProps) {
   const publishedAt = new Date(frontmatter.publishedAt);
 
   return (
-    <div className="py-7 px-4 md:px-10">
-      <Header />
-      <main className="">
-        <article className="flex flex-col xl:flex-row">
-          <div className="xl:w-1/6 shrink-0">
-            <h1 className="text-3xl xl:text-xl font-bold">
-              {frontmatter.title}
-            </h1>
-            <p className="fonts-['system-ui'] text-lg md:text-base italics mt-1 mb-8">
-              <time dateTime={format(publishedAt, "y-MM-dd")}>
-                {format(publishedAt, "LLL d, y")}
-                {` — ${frontmatter.readingTime} min read`}
-              </time>
-            </p>
-          </div>
-          <div className="xl:w-4/6">
-            <div className="max-w-[650px] mx-auto [&>p]:indent-7s [&>p]:mb-5 [&>p]:fonts-['Source_Serif_Pro'] [&>p]:font-semibolds last:[&>p]:after:content-none [&>p]:after:content-['***']s [&>p]:after:block [&>p]:after:text-center [&>p]:afters:py-5 [&>hr]:mt-3 break-words dark:text-inherit font-serif font-medium text-xl leading-7s">
-              {content}
-              {frontmatter.tags && (
-                <p className="fonts-['system-ui'] text-xl font-bold mb-8 text-center hidden">
-                  Tagged in:{" "}
-                  {frontmatter.tags.map(
-                    (tag, i) =>
-                      `${tag}${i + 1 !== frontmatter.tags?.length ? ", " : ""}`
-                  )}
-                </p>
+    <article className="flex flex-col xl:flex-row">
+      <div className="xl:w-1/6 shrink-0">
+        <h1 className="font-serif italic text-xl">{frontmatter.title}</h1>
+        <p className="mt-1 mb-8">
+          <time dateTime={format(publishedAt, "y-MM-dd")}>
+            {format(publishedAt, "LLL d, y")}
+            {` — ${frontmatter.readingTime} min read`}
+          </time>
+        </p>
+      </div>
+      <div className="xl:w-4/6">
+        <div className="max-w-[650px] mx-auto [&>p]:mb-5 [&>hr]:mt-3 break-words dark:text-inherit">
+          {content}
+          {frontmatter.tags && (
+            <p className="fonts-['system-ui'] text-xl font-bold mb-8 text-center hidden">
+              Tagged in:{" "}
+              {frontmatter.tags.map(
+                (tag, i) =>
+                  `${tag}${i + 1 !== frontmatter.tags?.length ? ", " : ""}`
               )}
-            </div>
-          </div>
-        </article>
-      </main>
-    </div>
+            </p>
+          )}
+        </div>
+      </div>
+    </article>
   );
 }
 

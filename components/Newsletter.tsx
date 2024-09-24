@@ -86,12 +86,12 @@ export function Newsletter() {
         </>
       ) : (
         <div
-          className="text-xl flex items-center hover:cursor-pointer"
+          className="flex items-center hover:cursor-pointer"
           onClick={() => setIsInputOpen(true)}
         >
           <div className="hiddsen md:block w-11 h-0 border-b-[1.5px] border-dashed border-neutral-800 dark:border-neutral-100" />
           <div className="hiddsen md:block font-mono h-5 w-[10.5px] relative overflow-x-hidden text-2xl">
-            <span className="absolute leading-[0] right-0 top-[10px]">→</span>
+            <span className="absolute leading-[0] right-0 top-[9.7px]">→</span>
           </div>
           <div className="md:w-2/3 pl-2">
             <span className="font-monos uppercases tracking-tights animate-blink">

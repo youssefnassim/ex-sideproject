@@ -13,6 +13,7 @@ module.exports = {
         // "2xl": ["1.4rem", "1.5"],
       },
       fontFamily: {
+        sans: ["var(--font-inter)"],
         serif: ["var(--font-newsreader)"],
         mono: ["var(--font-space-mono)"],
       },

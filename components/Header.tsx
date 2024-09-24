@@ -58,10 +58,10 @@ export default function Header() {
   };
 
   return (
-    <header className="mb-10 md:mb-14 h-28 md:h-32">
-      <ul className={classNames("flex justify-between text-xl")}>
+    <header className="py-7 px-4 md:px-10 mb-10 md:mb-14 h-28 md:h-32">
+      <ul className={classNames("flex justify-between")}>
         <li>
-          <Link href="/" className={classNames("text-xl font-bold")}>
+          <Link href="/" className={classNames("font-serif italic text-xl")}>
             Ex Side Project
           </Link>
         </li>

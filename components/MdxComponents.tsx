@@ -12,37 +12,22 @@ export const components = {
     />
   ),
   h1: (props: any) => (
-    <h1 className="text-centers text-2xl font-bold mt-10 mb-4" {...props} />
+    <h1 className="text-xl font-bold mt-10 mb-4" {...props} />
   ),
   h2: (props: any) => (
-    <h2
-      className="text-centers relative text-xl font-bold mt-10 mb-6"
-      {...props}
-    />
+    <h2 className="relative text-lg font-bold mt-10 mb-6" {...props} />
   ),
   h3: (props: any) => (
-    <h3
-      className="text-centers relative text-lg font-bold mt-4 mb-4"
-      {...props}
-    />
+    <h3 className="relative text-base font-bold mt-4 mb-4" {...props} />
   ),
   h4: (props: any) => (
-    <h4
-      className="text-centers relative text-base font-bold mt-4 mb-4"
-      {...props}
-    />
+    <h4 className="relative text-sm font-bold mt-4 mb-4" {...props} />
   ),
   h5: (props: any) => (
-    <h5
-      className="text-centers relative text-sm font-bold mt-2 mb-4"
-      {...props}
-    />
+    <h5 className="relative text-xs font-bold mt-2 mb-4" {...props} />
   ),
   h6: (props: any) => (
-    <h6
-      className="text-centers relative text-xs font-bold mt-2 mb-4"
-      {...props}
-    />
+    <h6 className="relative text-xs font-bold mt-2 mb-4" {...props} />
   ),
   ul: (props: any) => (
     <ul className="list-disc space-y-1 pl-8 text-xl" {...props} />
@@ -51,7 +36,7 @@ export const components = {
     <ol className="list-decimal space-y-1 pl-8 text-xl" {...props} />
   ),
   blockquote: (props: any) => (
-    <blockquote className="pl-6 text-xl italic" {...props} />
+    <blockquote className="pl-6 text-base italic" {...props} />
   ),
   BSImage: (props: any) => (
     <div className="relative">

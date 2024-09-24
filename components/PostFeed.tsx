@@ -70,7 +70,7 @@ export default function FilterablePostFeed({
         );
 
   return (
-    <ul className="space-y-6 md:space-y-8">
+    <ul className="space-y-10 md:space-y-12">
       {filterable && (
         <HomeListItemLayout leftCol="FILTER:">
           {tags.map((tag, i) => (
@@ -79,7 +79,7 @@ export default function FilterablePostFeed({
               {...register(tag.name)}
               disabled={!leftPossibleTags.includes(tag.name)}
               className={classNames(
-                "text-xl md:text-3xls after:content-[','] last:after:content-none after:mr-1",
+                "after:content-[','] last:after:content-none after:mr-1",
                 false && tag.className
               )}
               label={tag.customLabel}
